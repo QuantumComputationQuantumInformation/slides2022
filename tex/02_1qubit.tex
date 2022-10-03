@@ -454,6 +454,37 @@ If $\ket{\psi}\bra{\psi}$ is measured by $(\ket{\varphi_0}\bra{\varphi_0}, \ket{
 the output is 0 with probability $\Tr(\ket{\varphi_0}\bra{\varphi_0} \ket{\psi}\bra{\psi})=|\braket{\varphi_0|\psi}|^2$.
 \end{frame}
 
+\begin{frame}{Quantum channel}
+\end{frame}
+
+\begin{frame}{Single qubit quantum channel}
+Since real vector space spanned by 2x2 Hermitian matrices is 4-dimensional, any linear map $\Phi$ on the linear space
+is represented by 4x4 real matrix.
+\begin{align*}
+\Phi\left(\bm{a}\cdot \bm{\sigma}\right)
+=
+(T\bm{a})\cdot \bm{\sigma}
+\end{align*}
+Here,
+\begin{align*}
+T_{i,j} = \frac12\Tr(\sigma_i\Phi(\sigma_j)).
+\end{align*}
+From the trace-preserving property
+\begin{align*}
+T_{0,0} &= \frac12\Tr(\Phi(I)) = \frac12\Tr(I) = 1,&
+T_{0,1} &= \frac12\Tr(\Phi(X)) = \frac12\Tr(X) = 0.
+\end{align*}
+\begin{align*}
+T &=
+\begin{bmatrix}
+1&0&0&0\\
+t_1&\\
+t_2&\\
+t_3
+\end{bmatrix}
+\end{align*}
+\end{frame}
+
 \begin{frame}{Unitary operation}
 For unitary operation $U$, let us consider
 \begin{equation*}
@@ -472,6 +503,26 @@ A pure state $\ket{\psi}$ is mapped to a pure state $U\ket{\psi}$.
 
 \vspace{2em}
 $U$ and $\mathsf{e}^{i\theta}U$ are physically equivalent.
+\end{frame}
+
+\begin{frame}{Matrix representation of unitary channel}
+Unitary channel is \emm{unital}, i.e., $\Phi(I) = I$.
+
+\begin{align*}
+T_{1,0} &= \frac12\Tr(X\Phi(I)) = \frac12\Tr(X) = 0
+\end{align*}
+
+\begin{align*}
+T &=
+\begin{bmatrix}
+1&0&0&0\\
+0&\\
+0&\\
+0
+\end{bmatrix}
+\end{align*}
+
+Unitary channel is represented by the 3x3 real matrix $M$.
 \end{frame}
 
 \begin{frame}{Examples of unitary operations}
@@ -508,6 +559,7 @@ X\rho X^\dagger &= X\rho X =  \frac12\left(X^2 + r_X X^3 + r_Y XYX + r_Z XZX\rig
 [r_X\ r_Y\ r_Z]\overset{X}{\longmapsto} [r_X\ -r_Y\ -r_Z]
 \end{align*}
 \emm{$\pi$-rotation} with respect to $X$ axis.
+$M = \begin{bmatrix}1&0&0\\0&-1&0\\0&0&-1\end{bmatrix}$.
 
 \vspace{1em}
 Similarly, $Y$ and $Z$ corresponds to \emm{$\pi$-rotation} with respect to $Y$ and $Z$ axes, respectively.
@@ -544,18 +596,19 @@ H\rho H^\dagger &= H\rho H =  \frac12\left(H^2 + r_X HXH + r_Y HYH + r_Z HZH\rig
 \begin{align*}
 [r_X\ r_Y\ r_Z]\overset{H}{\longmapsto} [r_Z\ -r_Y\ r_X]
 \end{align*}
-Hadamard operation can be decomposed to \emm{$\pi/2$-rotation} with respect to $Y$ axis
-\begin{align*}
-[r_X\ r_Y\ r_Z]\overset{R_Y(\pi/2)}{\longmapsto} [r_Z\ r_Y\ -r_X]
-\end{align*}
-and \emm{$X$}.
+$M=\begin{bmatrix}0&0&1\\0&-1&0\\1&0&0\end{bmatrix}$.
+%Hadamard operation can be decomposed to \emm{$\pi/2$-rotation} with respect to $Y$ axis
+%\begin{align*}
+%[r_X\ r_Y\ r_Z]\overset{R_Y(\pi/2)}{\longmapsto} [r_Z\ r_Y\ -r_X]
+%\end{align*}
+%and \emm{$X$}.
 \end{frame}
 
 
 \begin{frame}{Rotation matrices}
 \small
 \begin{equation*}
-R_X(\theta) := \cos\frac{\theta}2 I - i \sin\frac{\theta}2 X
+R_Z(\theta) := \cos\frac{\theta}2 I - i \sin\frac{\theta}2 Z
 \end{equation*}
 \begin{equation*}
 R_X(\theta)^\dagger = R_X(-\theta)
@@ -584,6 +637,7 @@ R_X(\theta)R_X(\tau)=R_X(\theta+\tau)
 %\end{align*}
 \end{frame}
 
+\if0
 \begin{frame}{Matrix function}
 \begin{definition}
 For $f\colon \mathbb{C}\to\mathbb{C}$ and orthonormal basis $(\ket{\psi_j})_j$ of $\mathcal{X}$,
@@ -621,6 +675,23 @@ Then, for Hermitian matrix
 H=\sum_j \theta_j\ket{\psi_j}\bra{\psi_j}.
 \end{equation*}
 $U = \emm{\exp(i H)}$.
+\end{frame}
+\fi
+
+\begin{frame}{General unitary matrix}
+$Tr(UAU^\dagger UBU^\dagger) = \Tr(AB)$.
+
+$M$ is orthogonal matrix.
+
+\vspace{2em}
+Since for
+\begin{equation*}
+U=\sum_j \lambda_j\ket{\psi_j}\bra{\psi_j}= VR_Z(\theta)V^\dagger.
+\end{equation*}
+\begin{equation*}
+M = S R S^{-1}
+\end{equation*}
+$\det(M)=1$
 \end{frame}
 
 \begin{frame}{Assignments}
