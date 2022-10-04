@@ -1,5 +1,9 @@
 # Quantum Computation and Quantum Information
 
+Join the Slack workspace by using your real name.
+
+https://join.slack.com/t/qcqi2022/shared_invite/zt-1hd703lhd-aKPp8J3cbGZNTQSBtJKwXA
+
 Youtube playlist of the lecture videos for 2021 (in English).
 
 https://www.youtube.com/playlist?list=PLmCVdZFx-DufV_nsl_UnaRaznW6DHE_Aq
