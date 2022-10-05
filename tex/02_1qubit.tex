@@ -403,7 +403,7 @@ Then, $\Tr((p_1\rho_1+p_2\rho_2)\ket{\varphi}\bra{\varphi})=1$ implies that $\Tr
 \end{frame}
 
 \begin{frame}{Pure states and state vector}
-Pure state $\ket{\psi}\bra{\psi}$ can be represented by a \emm{state vector} $\ket{\psi}\in\mathbb{C}^2$ with $\braket{\psi|\psi}=1$.
+Pure state $\ket{\psi}\bra{\psi}$ can be represented by a \emm{state vector} $\ket{\psi}\in\mathbb{C}^n$ with $\braket{\psi|\psi}=1$.
 
 \vspace{.7em}
 $\ket{\psi}$ and $\ket{\varphi}:=\mathsf{e}^{i\theta}\ket{\psi}$ represent the same state since $\ket{\psi}\bra{\psi}=\ket{\varphi}\bra{\varphi}$.
@@ -454,36 +454,24 @@ If $\ket{\psi}\bra{\psi}$ is measured by $(\ket{\varphi_0}\bra{\varphi_0}, \ket{
 the output is 0 with probability $\Tr(\ket{\varphi_0}\bra{\varphi_0} \ket{\psi}\bra{\psi})=|\braket{\varphi_0|\psi}|^2$.
 \end{frame}
 
+\if0
 \begin{frame}{Quantum channel}
-\end{frame}
+Quantum channel is a map $\Phi\colon D(\mathcal{X})\to D(\mathcal{Y})$ satisfying $\Phi(p_0 \rho_0 + p_1 \rho_1) = p_0\Phi(\rho_0) + p_1\Phi(\rho_1)$.
 
-\begin{frame}{Single qubit quantum channel}
-Since real vector space spanned by 2x2 Hermitian matrices is 4-dimensional, any linear map $\Phi$ on the linear space
-is represented by 4x4 real matrix.
-\begin{align*}
-\Phi\left(\bm{a}\cdot \bm{\sigma}\right)
-=
-(T\bm{a})\cdot \bm{\sigma}
-\end{align*}
-Here,
-\begin{align*}
-T_{i,j} = \frac12\Tr(\sigma_i\Phi(\sigma_j)).
-\end{align*}
-From the trace-preserving property
-\begin{align*}
-T_{0,0} &= \frac12\Tr(\Phi(I)) = \frac12\Tr(I) = 1,&
-T_{0,1} &= \frac12\Tr(\Phi(X)) = \frac12\Tr(X) = 0.
-\end{align*}
-\begin{align*}
-T &=
-\begin{bmatrix}
-1&0&0&0\\
-t_1&\\
-t_2&\\
-t_3
-\end{bmatrix}
-\end{align*}
+\vspace{2em}
+Quantum channel can be regarded as a \emm{linear map} $\Phi\colon\mathcal{H}(\mathcal{X})\to \mathcal{H}(\mathcal{Y})$.
+
+\begin{enumerate}
+\item (Trace preserving) $\Tr(\Phi(\rho)) = \Tr(\rho)$.
+\item (Positivity) $\Phi(\rho)\succeq 0$ for $\rho\succeq 0$.
+\end{enumerate}
+
+\begin{enumerate}
+\item[2'] (Complete positivity) $\Phi(\rho)\succeq 0$ for $\rho\succeq 0$.
+\end{enumerate}
 \end{frame}
+\fi
+
 
 \begin{frame}{Unitary operation}
 For unitary operation $U$, let us consider
@@ -494,8 +482,8 @@ For unitary operation $U$, let us consider
 \vspace{2em}
 It is easy to see that
 \begin{itemize}
-\item $\Tr(U\rho U^\dagger)=1$
-\item $U\rho U^\dagger\succeq 0$
+\item $\Tr(U\rho U^\dagger)=1$ (Trace-preserving)
+\item $U\rho U^\dagger\succeq 0$ (Positive)
 \end{itemize}
 
 \vspace{3em}
@@ -505,24 +493,66 @@ A pure state $\ket{\psi}$ is mapped to a pure state $U\ket{\psi}$.
 $U$ and $\mathsf{e}^{i\theta}U$ are physically equivalent.
 \end{frame}
 
+\begin{frame}{Single qubit quantum channel}
+\small
+Since real vector space spanned by 2x2 Hermitian matrices is 4-dimensional, any linear map $\Phi$ on the linear space
+is represented by 4x4 real matrix.
+Let $\sigma_0=I,\,\sigma_1=X,\,\sigma_2=Y,\,\sigma_3=Z$.
+\begin{align*}
+\Phi\left(\bm{a}\cdot \bm{\sigma}_0^3\right)
+=
+(T\bm{a})\cdot \bm{\sigma}_0^3
+\end{align*}
+Here,
+\begin{align*}
+T_{i,j} = \frac12\Tr(\sigma_i\Phi(\sigma_j)).
+\end{align*}
+From the trace-preserving property
+\begin{align*}
+%T_{0,0} &= \frac12\Tr(\Phi(I)) = \frac12\Tr(I) = 1,&
+%T_{0,1} &= \frac12\Tr(\Phi(X)) = \frac12\Tr(X) = 0.
+T_{0,j} &= \frac12\Tr(\sigma_0\Phi(\sigma_j)) = \frac12\Tr(\sigma_j) = \delta_{0,j},&
+\end{align*}
+\begin{align*}
+T &=
+\begin{bmatrix}
+1&0&0&0\\
+t_1&M_{11}&M_{12}&M_{13}\\
+t_2&M_{21}&M_{22}&M_{23}\\
+t_3&M_{31}&M_{32}&M_{33}
+\end{bmatrix}
+\end{align*}
+
+\vspace{1em}
+\begin{equation*}
+\frac{I+\mathbf{r}\cdot\sigma_1^3}2 \stackrel{\Phi}{\longmapsto}
+\frac{I+(M\mathbf{r}+\mathbf{t})\cdot\sigma_1^3}2
+\end{equation*}
+\end{frame}
+
 \begin{frame}{Matrix representation of unitary channel}
-Unitary channel is \emm{unital}, i.e., $\Phi(I) = I$.
+Unitary channel is \emm{unital}, i.e., $\Phi(I) = UIU^\dagger = I$.
 
 \begin{align*}
-T_{1,0} &= \frac12\Tr(X\Phi(I)) = \frac12\Tr(X) = 0
+T_{i,0} &= \frac12\Tr(\sigma_i\Phi(I)) = \frac12\Tr(\sigma_i) = \delta_{i,0}
 \end{align*}
 
 \begin{align*}
 T &=
 \begin{bmatrix}
 1&0&0&0\\
-0&\\
-0&\\
-0
+0&M_{11}&M_{12}&M_{13}\\
+0&M_{21}&M_{22}&M_{23}\\
+0&M_{31}&M_{32}&M_{33}
 \end{bmatrix}
 \end{align*}
 
-Unitary channel is represented by the 3x3 real matrix $M$.
+Unitary channel is represented by the $3\times 3$ real matrix $M$.
+
+\begin{equation*}
+\frac{I+\mathbf{r}\cdot\sigma_1^3}2 \longmapsto
+\frac{I+(M\mathbf{r})\cdot\sigma_1^3}2
+\end{equation*}
 \end{frame}
 
 \begin{frame}{Examples of unitary operations}
@@ -605,30 +635,41 @@ $M=\begin{bmatrix}0&0&1\\0&-1&0\\1&0&0\end{bmatrix}$.
 \end{frame}
 
 
-\begin{frame}{Rotation matrices}
+\begin{frame}{Rotation matrice for the $Z$ axis}
 \small
 \begin{equation*}
-R_Z(\theta) := \cos\frac{\theta}2 I - i \sin\frac{\theta}2 Z
+\emm{R_Z(\theta)} := \cos\frac{\theta}2 I - i \sin\frac{\theta}2 Z
+%=\begin{bmatrix}
+%\mathsf{e}^{-\frac{\theta}2}&0\\
+%0&\mathsf{e}^{\frac{\theta}2}
+%\end{bmatrix}
 \end{equation*}
 \begin{equation*}
-R_X(\theta)^\dagger = R_X(-\theta)
+R_Z(\theta)^\dagger = \cos\frac{\theta}2 I + i \sin\frac{\theta}2 Z = R_Z(-\theta)
 \end{equation*}
 \begin{align*}
-R_X(\theta)R_X(\theta)^\dagger &= (\cos\frac{\theta}2 I - i \sin\frac{\theta}2 X)(\cos\frac{\theta}2 I + i \sin\frac{\theta}2 X)\\
-&= \cos^2\frac{\theta}2 I + \sin^2\frac{\theta}2 X^2=I
+R_Z(\theta)R_Z(\tau) &= \left(\cos\frac{\theta}2 I - i \sin\frac{\theta}2 Z\right)\left(\cos\frac{\tau}2 I - i \sin\frac{\tau}2 Z\right)\\
+&= \left(\cos\frac{\theta}2 \cos\frac{\tau}2 - \sin\frac{\theta}2 \sin\frac{\tau}2\right) I - i \left(\cos\frac{\theta}2 \sin\frac{\tau}2 + \sin\frac{\theta}2 \cos\frac{\tau}2\right)Z\\
+&= \cos\frac{\theta+\tau}2 I - i \sin\frac{\theta+\tau}2 Z = R_Z(\theta+\tau)
 \end{align*}
 \begin{align*}
-R_X(\theta)X&=X R_X(\theta),&
-R_X(\theta)Y&=Y R_X(-\theta),&
-R_X(\theta)Z&=Z R_X(-\theta)
+R_Z(\theta)R_Z(\theta)^\dagger = R_Z(\theta)R_Z(-\theta) =R_Z(\theta-\theta) = R_Z(0) = I
 \end{align*}
 \begin{align*}
-R_X(\theta)R_X(\tau)=R_X(\theta+\tau)
+R_Z(\theta)X&=X R_Z(-\theta),&
+R_Z(\theta)Y&=Y R_Z(-\theta),&
+R_Z(\theta)Z&=Z R_Z(\theta)
 \end{align*}
 \begin{align*}
-[1\  0\  0]&\overset{R_X(\theta)}{\longmapsto} [1\ 0\ 0]\\
-[0\  1\  0]&\overset{R_X(\theta)}{\longmapsto} [0\ \cos\theta\ \sin\theta]\\
-[0\  0\  1]&\overset{R_X(\theta)}{\longmapsto} [0\ -\sin\theta\ \cos\theta]
+M=
+\begin{bmatrix}
+\cos\theta&\sin\theta&0\\
+-\sin\theta&\cos\theta&0\\
+0&0&1
+\end{bmatrix}
+%[1\  0\  0]&\overset{R_Z(\theta)}{\longmapsto} [1\ 0\ 0]\\
+%[0\  1\  0]&\overset{R_Z(\theta)}{\longmapsto} [0\ \cos\theta\ \sin\theta]\\
+%[0\  0\  1]&\overset{R_Z(\theta)}{\longmapsto} [0\ -\sin\theta\ \cos\theta]
 \end{align*}
 \emm{$\theta$-rotation} with respect to $X$ axis.
 %\begin{align*}
@@ -679,39 +720,66 @@ $U = \emm{\exp(i H)}$.
 \fi
 
 \begin{frame}{General unitary matrix}
-$Tr(UAU^\dagger UBU^\dagger) = \Tr(AB)$.
+$\langle UAU^\dagger, UBU^\dagger\rangle = Tr(UAU^\dagger UBU^\dagger) = \Tr(AB) = \langle A, B \rangle$.
 
-$M$ is orthogonal matrix.
+\begin{align*}
+\langle UAU^\dagger, UBU^\dagger\rangle &= \left\langle \frac{I+(M\mathbf{a})\cdot\sigma_1^3}2, \frac{I+(M\mathbf{b})\cdot\sigma_1^3}2\right\rangle = \frac12(1+\langle M\mathbf{a}, M\mathbf{b}\rangle)\\
+\langle A, B\rangle &= \left\langle \frac{I+\mathbf{a}\cdot\sigma_1^3}2, \frac{I+\mathbf{b}\cdot\sigma_1^3}2\right\rangle = \frac12(1+\langle \mathbf{a}, \mathbf{b}\rangle)\\
+\end{align*}
+
+$M$ is an orthogonal matrix.
 
 \vspace{2em}
-Since for
+Since for a unitari matrixy $U$ with $\det(U)=1$,
 \begin{equation*}
 U=\sum_j \lambda_j\ket{\psi_j}\bra{\psi_j}= VR_Z(\theta)V^\dagger.
 \end{equation*}
 \begin{equation*}
 M = S R S^{-1}
 \end{equation*}
-$\det(M)=1$
+$\det(M)=1$.
+\end{frame}
+
+\begin{frame}{Rotation matrices}
+A matrix $M$ is called a rotation matrix if $M M^T=I$, $\det(M)=1$.
+
+\begin{align*}
+\det(M-I) &= \det(M^T)\det(M-I) = \det(M^T M - M^T) = \det(I - M^T)\\
+& = \det(I - M) = (-1)^n \det(M- I)
+\end{align*}
+
+\vspace{2em}
+If the dimension $n$ is odd, $\det(M-I)=0$.
 \end{frame}
 
 \begin{frame}{Assignments}
+\small
 \begin{enumerate}
 \setlength{\itemsep}{2em}
-\item For $a,b,c,d\in\mathbb{R}$, show $r_I,\ r_X,\ r_Y,\ r_Z\in\mathbb{R}$ satisfying $\begin{bmatrix}a&b+ci\\b-ci&d\end{bmatrix} = r_II+r_XX+r_YY+r_ZZ$.
-\item Express $\exp\left(-i\frac{\theta}2 X\right)$ for $\theta\in\mathbb{R}$ as a complex linear combination of $I$, $X$, $Y$ and $Z$.
-A summation with infinite number of terms is not allowed.
+%\item For $a,b,c,d\in\mathbb{R}$, show $r_I,\ r_X,\ r_Y,\ r_Z\in\mathbb{R}$ satisfying $\begin{bmatrix}a&b+ci\\b-ci&d\end{bmatrix} = r_II+r_XX+r_YY+r_ZZ$.
+\item Express $\bigl(a_X X + a_Y Y + a_Z Z\bigr)^2$ as a linear combination of $I, X, Y, Z$ for $a_X,a_Y,a_Z\in\mathbb{C}$.
+\item For a real unit vector $\mathbf{v}:=\begin{bmatrix}v_X&v_Y&v_Z\end{bmatrix}$, let
+\begin{equation*}
+R_\mathbf{v}(\theta) := \cos\frac{\theta}2 I - i \sin\frac{\theta}2\left(v_X X + v_Y Y + v_Z Z\right).
+\end{equation*}
+Show that $R_\mathbf{v}(\theta)R_\mathbf{v}(\tau)=R_\mathbf{v}(\theta+\tau)$ for any $\theta,\,\tau\in\mathbb{R}$.
+Show also that $R_\mathbf{v}(\theta)$ is a unitary matrix.
+\item Show two pure states $\rho_0,\,\rho_1$ that are invariant by $R_\mathbf{v}(\theta)$ for any $\theta\in\mathbb{R}$, i.e., $R_\mathbf{v}(\theta)\rho_i R_\mathbf{v}(\theta)^\dagger=\rho_i$, as linear combinations of $I$, $X$, $Y$ and $Z$.
+\item {[Advanced]} Show that for any unitary matrix $U$ with $\det(U)=1$, there exists a real three-dimensional unit vector $\mathbf{v}$ and $\theta\in\mathbb{R}$, such that $U=R_\mathbf{v}(\theta)$.
+%\item Express $\exp\left(-i\frac{\theta}2 X\right)$ for $\theta\in\mathbb{R}$ as a complex linear combination of $I$, $X$, $Y$ and $Z$.
+%A summation with infinite number of terms is not allowed.
 %\item Show that $R_Y(\theta):=\cos\frac{\theta}2-i\sin\frac{\theta}2Y=\begin{bmatrix}\cos\frac{\theta}2 & -\sin\frac{\theta}2\\ \sin\frac{\theta}2 & \cos\frac{\theta}2\end{bmatrix}$
 %and $R_Z(\theta):=\cos\frac{\theta}2-i\sin\frac{\theta}2Z=\begin{bmatrix}\mathsf{e}^{-i\theta/2}&0\\0&\mathsf{e}^{i\theta/2}\end{bmatrix}$.
 %\item Show that for any $2\times 2$ unitary matrix, there exist $\alpha,\,\beta,\,\gamma,\,\delta\in\mathbb{R}$ such that
 %\begin{equation*}
 %U=\mathsf{e}^{i\alpha}R_Z(\beta)R_Y(\gamma)R_Z(\delta)
 %\end{equation*}
-\item {[Advanced]} For $a_I,\ a_X,\ a_Y,\ a_Z\in\mathbb{R}$, represents
-\begin{equation*}
-\exp\left(i(a_II+a_XX+a_YY+a_ZZ)\right)
-\end{equation*}
-by a linear combination of $I, X, Y$ and $Z$.
-A summation with infinite number of terms is not allowed.
+%\item {[Advanced]} For $a_I,\ a_X,\ a_Y,\ a_Z\in\mathbb{R}$, represents
+%\begin{equation*}
+%\exp\left(i(a_II+a_XX+a_YY+a_ZZ)\right)
+%\end{equation*}
+%by a linear combination of $I, X, Y$ and $Z$.
+%A summation with infinite number of terms is not allowed.
 \end{enumerate}
 \end{frame}
 
