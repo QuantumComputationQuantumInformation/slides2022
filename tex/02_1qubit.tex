@@ -407,6 +407,12 @@ Pure state $\ket{\psi}\bra{\psi}$ can be represented by a \emm{state vector} $\k
 
 \vspace{.7em}
 $\ket{\psi}$ and $\ket{\varphi}:=\mathsf{e}^{i\theta}\ket{\psi}$ represent the same state since $\ket{\psi}\bra{\psi}=\ket{\varphi}\bra{\varphi}$.
+
+\vspace{.7em}
+A state that is not pure state is called a \emm{mixed state}.
+
+\vspace{2em}
+$\rho$ is called a \emm{density matrix}.
 \end{frame}
 
 \begin{frame}{Inner product of pure states}
@@ -720,26 +726,32 @@ $U = \emm{\exp(i H)}$.
 \fi
 
 \begin{frame}{General unitary matrix}
+\small
 $\langle UAU^\dagger, UBU^\dagger\rangle = Tr(UAU^\dagger UBU^\dagger) = \Tr(AB) = \langle A, B \rangle$.
 
 \begin{align*}
 \langle UAU^\dagger, UBU^\dagger\rangle &= \left\langle \frac{I+(M\mathbf{a})\cdot\sigma_1^3}2, \frac{I+(M\mathbf{b})\cdot\sigma_1^3}2\right\rangle = \frac12(1+\langle M\mathbf{a}, M\mathbf{b}\rangle)\\
-\langle A, B\rangle &= \left\langle \frac{I+\mathbf{a}\cdot\sigma_1^3}2, \frac{I+\mathbf{b}\cdot\sigma_1^3}2\right\rangle = \frac12(1+\langle \mathbf{a}, \mathbf{b}\rangle)\\
+\langle A, B\rangle &= \left\langle \frac{I+\mathbf{a}\cdot\sigma_1^3}2, \frac{I+\mathbf{b}\cdot\sigma_1^3}2\right\rangle = \frac12(1+\langle \mathbf{a}, \mathbf{b}\rangle)
 \end{align*}
 
-$M$ is an orthogonal matrix.
+$\langle M\mathbf{a}, M\mathbf{b}\rangle=\langle \mathbf{a},\mathbf{b}\rangle$ implies that $M$ is an orthogonal matrix.
 
-\vspace{2em}
-Since for a unitari matrixy $U$ with $\det(U)=1$,
+\vspace{1.0em}
+Since for a unitary matrix $U$ with $\det(U)=1$,
 \begin{equation*}
 U=\sum_j \lambda_j\ket{\psi_j}\bra{\psi_j}= VR_Z(\theta)V^\dagger.
 \end{equation*}
 \begin{equation*}
-M = S R S^{-1}
+M_U = M_V M_{R_Z(\theta)} M_V^{-1}
 \end{equation*}
-$\det(M)=1$.
+$\det(M_U)=\det(M_V)\det(M_{R_Z(\theta)})\det(M_V^{-1})=\det(M_{R_Z(\theta)})=1$.
+
+\vspace{1.0em}
+Conversely, any $3\times 3$ \emm{orthogonal} matrix $M$ with $\emm{\det(M)=1}$ corresponds to some unitary channel $\rho\mapsto U\rho U^\dagger$.
+Such matrix is a \emm{rotation matrix}.
 \end{frame}
 
+\if0
 \begin{frame}{Rotation matrices}
 A matrix $M$ is called a rotation matrix if $M M^T=I$, $\det(M)=1$.
 
@@ -751,6 +763,7 @@ A matrix $M$ is called a rotation matrix if $M M^T=I$, $\det(M)=1$.
 \vspace{2em}
 If the dimension $n$ is odd, $\det(M-I)=0$.
 \end{frame}
+\fi
 
 \begin{frame}{Assignments}
 \small
