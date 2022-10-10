@@ -57,7 +57,7 @@
 \author{Ryuhei Mori}
 %\institute{$\vcenter{\hbox{\includegraphics[width=30pt]{ELC_logo}}}$ Postdoctoral Fellow of ELC\\ $\vcenter{\hbox{\includegraphics[width=20pt]{titech_logo}}}$ Tokyo Institute of Technology}
 \institute{Tokyo Institute of Technology}
-\date{8, Oct., 2020}
+\date{}
 
 
 
@@ -427,6 +427,25 @@ for any $P\in\mathcal{H}(V)$.
 Indeed, $\Tr_W(\cdot)$ is a linear operator from $\mathcal{H}(V\otimes W)$ to $\mathcal{H}(V)$ defined by $\Tr_W(\rho_V\otimes \sigma_W)=\Tr(\sigma_W)\rho_V$.
 \end{frame}
 
+\begin{frame}{Reduced density matrix from the Schmidt decomposition}
+For a pure state $\ket{\psi}\in\mathcal{H}(V)\otimes\mathcal{H}(W)$ with the \emm{Schmidt decomposition}
+\begin{equation*}
+\ket{\psi}=\sum_i\lambda_i \ket{v_i}_V\ket{w_i}_W
+\end{equation*}
+it is easy to derive a \emm{reduced density matrices}.
+
+\begin{align*}
+\ket{\psi}\bra{\psi}&=\sum_{i,j}\lambda_i\lambda_j \ket{v_i}_V\ket{w_i}_W\bra{v_j}_V\bra{w_j}_W\\
+&=\sum_{i,j}\lambda_i\lambda_j \ket{v_i}_V\bra{v_j}_V\otimes \ket{w_i}_W\bra{w_j}_W
+\end{align*}
+\begin{align*}
+\Tr_W(\ket{\psi}\bra{\psi})&=\sum_{i,j}\lambda_i\lambda_j \ket{v_i}_V\bra{v_j}_V\Tr(\ket{w_i}_W\bra{w_j}_W)\\
+%&=\sum_{i,j}\lambda_i\lambda_j \ket{v_i}_V\bra{v_j}_V\delta_{i,\,j}\\
+&=\sum_i\lambda_i^2 \ket{v_i}_V\bra{v_i}_V\\
+\Tr_V(\ket{\psi}\bra{\psi}) &=\sum_i\lambda_i^2 \ket{w_i}_W\bra{w_i}_W
+\end{align*}
+\end{frame}
+
 \if0
 \begin{frame}{Reduced state of a pure state is not necessarily pure}
 A two-qubit pure state (called Bell state, Bell pair or EPR pair)
@@ -517,13 +536,13 @@ These are \emm{orthogonal}.
 \begin{enumerate}
 \setlength{\itemsep}{2em}
 %\item Show $A\otimes B \succeq 0$ for any $A\succeq 0$ and $B\succeq 0$.
-\item Show the Schmidt decomposition of the following states
+\item Show the Schmidt decomposition of the following pure states
 \begin{enumerate}[A]
 \setlength{\itemsep}{1em}
 \item $\frac12(\ket{00}+\ket{01}+\ket{10}+\ket{11})$
-\item $\frac12(\ket{00}+i\ket{01}+\ket{10}+\ket{11})$
-\item $\frac12(\ket{00}+i\ket{01}+i\ket{10}+\ket{11})$
-\item $\frac12(\ket{00}+i\ket{01}+i\ket{10}-\ket{11})$
+\item $\frac12(\ket{00}-\ket{01}-\ket{10}+\ket{11})$
+\item $\frac12(\ket{00}-i\ket{01}+i\ket{10}+\ket{11})$
+\item $\cos\theta\ket{00}-\sin\theta\ket{01}+\sin\theta\ket{10}+\cos\theta\ket{11}$
 \end{enumerate}
 \item Show the reduced density matrices for each qubit of the above pure states.
 \end{enumerate}
