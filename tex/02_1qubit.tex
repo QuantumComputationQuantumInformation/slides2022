@@ -480,7 +480,7 @@ Quantum channel can be regarded as a \emm{linear map} $\Phi\colon\mathcal{H}(\ma
 
 
 \begin{frame}{Unitary operation}
-For unitary operation $U$, let us consider
+For \emm{unitary} operation $U$, let us consider
 \begin{equation*}
 \rho\mapsto U\rho U^\dagger.
 \end{equation*}
@@ -503,24 +503,24 @@ $U$ and $\mathsf{e}^{i\theta}U$ are physically equivalent.
 \small
 Since real vector space spanned by 2x2 Hermitian matrices is 4-dimensional, any linear map $\Phi$ on the linear space
 is represented by 4x4 real matrix.
-Let $\sigma_0=I,\,\sigma_1=X,\,\sigma_2=Y,\,\sigma_3=Z$.
+Let $\sigma_0=I,\,\sigma_1=X,\,\sigma_2=Y,\,\sigma_3=Z$, and $\mathbf{a}\cdot\mathbf{\sigma}_0^3:=\sum_{i=0}^3a_i\sigma_i$.
 \begin{align*}
 \Phi\left(\bm{a}\cdot \bm{\sigma}_0^3\right)
 =
-(T\bm{a})\cdot \bm{\sigma}_0^3
+(\emm{T}\bm{a})\cdot \bm{\sigma}_0^3 \qquad\text{where}
 \end{align*}
-Here,
+%Here,
 \begin{align*}
-T_{i,j} = \frac12\Tr(\sigma_i\Phi(\sigma_j)).
+\emm{T}_{i,\,j} = \frac12\Tr(\sigma_i\Phi(\sigma_j)).
 \end{align*}
-From the trace-preserving property
+From the trace-preserving property, i.e., $\Tr(\Phi(\sigma))=\Tr(\sigma)$,
 \begin{align*}
 %T_{0,0} &= \frac12\Tr(\Phi(I)) = \frac12\Tr(I) = 1,&
 %T_{0,1} &= \frac12\Tr(\Phi(X)) = \frac12\Tr(X) = 0.
-T_{0,j} &= \frac12\Tr(\sigma_0\Phi(\sigma_j)) = \frac12\Tr(\sigma_j) = \delta_{0,j},&
+\emm{T}_{0,\,j} &= \frac12\Tr(\sigma_0\Phi(\sigma_j)) = \frac12\Tr(\sigma_j) = \delta_{0,j}
 \end{align*}
 \begin{align*}
-T &=
+\emm{T} &=
 \begin{bmatrix}
 1&0&0&0\\
 t_1&M_{11}&M_{12}&M_{13}\\
@@ -529,7 +529,7 @@ t_3&M_{31}&M_{32}&M_{33}
 \end{bmatrix}
 \end{align*}
 
-\vspace{1em}
+\vspace{.5em}
 \begin{equation*}
 \frac{I+\mathbf{r}\cdot\sigma_1^3}2 \stackrel{\Phi}{\longmapsto}
 \frac{I+(M\mathbf{r}+\mathbf{t})\cdot\sigma_1^3}2
@@ -540,7 +540,7 @@ t_3&M_{31}&M_{32}&M_{33}
 Unitary channel is \emm{unital}, i.e., $\Phi(I) = UIU^\dagger = I$.
 
 \begin{align*}
-T_{i,0} &= \frac12\Tr(\sigma_i\Phi(I)) = \frac12\Tr(\sigma_i) = \delta_{i,0}
+T_{i,\,0} &= \frac12\Tr(\sigma_i\Phi(I)) = \frac12\Tr(\sigma_i) = \delta_{i,0}
 \end{align*}
 
 \begin{align*}
@@ -553,7 +553,7 @@ T &=
 \end{bmatrix}
 \end{align*}
 
-Unitary channel is represented by the $3\times 3$ real matrix $M$.
+Trace-preserving unital channel is represented by the $3\times 3$ real matrix $M$.
 
 \begin{equation*}
 \frac{I+\mathbf{r}\cdot\sigma_1^3}2 \longmapsto
@@ -609,7 +609,7 @@ H:=\frac1{\sqrt{2}}\begin{bmatrix}1&1\\1&-1\end{bmatrix}
 &=\ket{0}\bra{+}+\ket{1}\bra{-}
 \end{align*}
 \begin{align*}
-\ket{0},\,\ket{1} \emm{\overset{H}{\longleftrightarrow}} \ket{+},\,\ket{-}
+\ket{0},\,\ket{1} \,\emm{\overset{H}{\longleftrightarrow}}\, \ket{+},\,\ket{-}
 \end{align*}
 \begin{align*}
 HXH &= H(\ket{+}\bra{+}-\ket{-}\bra{-})H\\
@@ -734,7 +734,7 @@ $\langle UAU^\dagger, UBU^\dagger\rangle = Tr(UAU^\dagger UBU^\dagger) = \Tr(AB)
 \langle A, B\rangle &= \left\langle \frac{I+\mathbf{a}\cdot\sigma_1^3}2, \frac{I+\mathbf{b}\cdot\sigma_1^3}2\right\rangle = \frac12(1+\langle \mathbf{a}, \mathbf{b}\rangle)
 \end{align*}
 
-$\langle M\mathbf{a}, M\mathbf{b}\rangle=\langle \mathbf{a},\mathbf{b}\rangle$ implies that $M$ is an orthogonal matrix.
+$\langle M\mathbf{a}, M\mathbf{b}\rangle=\langle \mathbf{a},\mathbf{b}\rangle$ implies that $M$ is an \emm{orthogonal} matrix.
 
 \vspace{1.0em}
 Since for a unitary matrix $U$ with $\det(U)=1$,
