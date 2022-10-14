@@ -205,13 +205,13 @@ This implies $(PAQ)^\dagger = QA^\dagger P = 0$.
 \end{itemize}
 
 \vspace{1em}
-Hence, $A=\lambda P + QAQ$.
+Hence, $A=\emm{\lambda P + QAQ}$.
 Since $QA=QA(P+Q)=QAQ$ and $QA^\dagger = QA^\dagger(P+Q) = QA^\dagger Q$,
 \begin{align*}
 &(QAQ)(QA^\dagger Q) = QA A^\dagger Q\\
 &= QA^\dagger AQ = QA^\dagger QQ AQ
 \end{align*}
-Hence, $QAQ$ is normal linear operator on $W_\perp$.
+Hence, $QAQ$ can be regarded as a normal linear operator on $W_\perp$.
 From the hypothesis of induction, $QAQ$ has a spectral decomposition.
 \end{frame}
 
@@ -330,6 +330,7 @@ the Schmidt decomposition for $V\otimes W$ corresponds to the singular value dec
 \end{frame}
 \fi
 
+\if0
 \begin{frame}{Partial trace}
 The \emm{partial trace} $\Tr_W: \mathcal{L}(V\otimes W)\to \mathcal{L}(V)$
 is linear map defined by
@@ -352,6 +353,7 @@ A = \sum_{a,b,c,d} A_{a,b,c,d} \ket{a}\bra{b}\otimes\ket{c}\bra{d}
 \Tr(\Tr_W(A)) &= \sum_{a,c} A_{a,a,c,c} = \Tr(A)
 \end{align*}
 \end{frame}
+\fi
 
 \if0
 \begin{frame}{Local tomography}
@@ -366,7 +368,7 @@ P(a, b) = \Tr(\rho (P_a \otimes Q_b)).
 \end{frame}
 \fi
 
-
+\if0
 \begin{frame}{Marginal distribution and reduced density matrix}
 A probability of outcome of local measurement in a composite system is
 \begin{align*}
@@ -393,6 +395,7 @@ A two-qubit pure state (called Bell state, Bell pair or EPR pair)
 \end{align*}
 By taking the partial trace for the second qubit, we obtain a reduced density matrix $I/2$.
 \end{frame}
+\fi
 
 
 %\begin{frame}{Conditional distribution}
