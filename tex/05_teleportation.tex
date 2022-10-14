@@ -569,13 +569,21 @@ Examples
 \end{frame}
 
 \begin{frame}{Quantum teleportation}
+Let $A=B=C=\mathbb{C}^d$.
+For $L_{B\to A}$ satisfying $\Tr(L_{B\to A}^\dagger L_{B\to A})=1$,
 \begin{align*}
-&\Tr_{AB}\left(\rho_A\otimes \Kett{\frac1{\sqrt{2}}I_{C\to B}}\Braa{\frac1{\sqrt{2}}I_{C\to B}} \quad \Kett{\frac1{\sqrt{2}}U_{B\to A}}\Braa{\frac1{\sqrt{2}}U_{B\to A}}\right)\\
-&=\Tr_{AB}\left(I_A\otimes \Kett{\frac1{\sqrt{2}}I_{C\to B}}\Braa{\frac1{\sqrt{2}}I_{C\to B}} \quad \Kett{\frac1{\sqrt{2}}\rho_A U_{B\to A}}\Braa{\frac1{\sqrt{2}}U_{B\to A}}\right)\\
-&=\Tr_{AB}\left(I_A\otimes \Kett{\frac1{\sqrt{2}}I_{C\to B}} \frac12 \rho_A U_{B\to A} I_{C\to B}^* \Braa{\frac1{\sqrt{2}}U_{B\to A}}\right)\\
-&=\Braa{\frac1{\sqrt{2}}U_{B\to A}} \Kett{\frac1{\sqrt{2}}I_{C\to B}} \frac12 \rho_A U_{C\to A}\\
-&=\frac12 (I_{C\to B})^T U_{B\to A}^\dagger \frac12 \rho_A U_{C\to A} = \frac14 U_{C\to A}^\dagger \rho_A U_{C\to A}\\
+&\Tr_{AB}\left(\rho_A\otimes \Kett{\frac1{\sqrt{d}}I_{C\to B}}\Braa{\frac1{\sqrt{d}}I_{C\to B}} \quad \Kett{L_{B\to A}}\Braa{L_{B\to A}}\right)\\
+&=\Tr_{AB}\left(I_A\otimes \Kett{\frac1{\sqrt{d}}I_{C\to B}}\Braa{\frac1{\sqrt{d}}I_{C\to B}} \quad \Kett{\rho_A L_{B\to A}}\Braa{L_{B\to A}}\right)\\
+&=\Tr_{AB}\left(I_A\otimes \Kett{\frac1{\sqrt{d}}I_{C\to B}} \frac1{\sqrt{d}} \rho_A L_{B\to A} I_{C\to B}^* \Braa{L_{B\to A}}\right)\\
+&=\Braa{L_{B\to A}} \Kett{\frac1{\sqrt{d}}I_{C\to B}} \frac1{\sqrt{d}} \rho_A L_{C\to A}\\
+&=\frac1{\sqrt{d}} (I_{C\to B})^T L_{B\to A}^\dagger \frac1{\sqrt{d}} \rho_A L_{C\to A} = \frac1d L_{C\to A}^\dagger \rho_A L_{C\to A}
 \end{align*}
+
+\vspace{.5em}
+When $L_{B\to A} = \frac1{\sqrt{d}} U_{B\to A}$ for some unitary matrix (isometry) $U_{B\to A}$,
+\begin{equation*}
+\frac1d L_{C\to A}^\dagger \rho_A L_{C\to A} = \frac1{d^2} U_{C\to A}^\dagger \rho_A U_{C\to A}.
+\end{equation*}
 \end{frame}
 
 \begin{frame}{Conditional density operator for pure state}
