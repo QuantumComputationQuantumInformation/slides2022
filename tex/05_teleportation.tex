@@ -54,6 +54,11 @@
 %\newcommand\bm[1]{\ensuremath{\boldsymbol{#1}}}
 %\newcommand\bm[1]{{\textbf{\it #1}}}
 
+\newcommand\kett[1]{|#1\rangle\!\rangle}
+\newcommand\Kett[1]{\Bigl|#1\Big\rangle\!\!\Big\rangle}
+\newcommand\braa[1]{\langle\!\langle#1|}
+\newcommand\Braa[1]{\Bigl\langle\!\!\Bigl\langle#1\Bigr|}
+
 \title{Quantum teleportation}
 \author{Ryuhei Mori}
 %\institute{$\vcenter{\hbox{\includegraphics[width=30pt]{ELC_logo}}}$ Postdoctoral Fellow of ELC\\ $\vcenter{\hbox{\includegraphics[width=20pt]{titech_logo}}}$ Tokyo Institute of Technology}
@@ -521,6 +526,56 @@ For $\rho_{V\otimes W}=\ket{\varphi}_{V\otimes W}\bra{\varphi}_{V\otimes W}$ and
 =
 \Tr_W(\ket{\varphi}_{V\otimes W}\bra{\varphi}_{V\otimes W} (I_V\otimes \ket{\psi_b}_W\bra{\psi_b}_W))
 \end{equation*}
+\end{frame}
+
+\begin{frame}{Trick}
+\begin{align*}
+A_{W\to V}&=\sum_{i,j}A_{i,j}\ket{i}_V\bra{j}_W\\
+%|A\rangle\!\rangle &= \sum_{i,j}A_{i,j}\ket{i}_V\ket{j}_W
+\kett{A_{W\to V}} &:= \mathcal{M}^{-1}(A_{W\to V}) = \sum_{i,j}A_{i,j}\ket{i}_V\ket{j}_W
+\end{align*}
+
+Examples
+\begin{align*}
+\Kett{\frac1{\sqrt{2}} I} &= \frac1{\sqrt{2}} \left(\ket{0}\ket{0}+\ket{1}\ket{1}\right)\\
+\Kett{\frac1{\sqrt{2}} X} &= \frac1{\sqrt{2}} \left(\ket{0}\ket{1}+\ket{1}\ket{0}\right)\\
+\Kett{\frac1{\sqrt{2}} Y} &= \frac1{\sqrt{2}} \left(-i\ket{0}\ket{1}+i\ket{1}\ket{0}\right)\\
+\Kett{\frac1{\sqrt{2}} Z} &= \frac1{\sqrt{2}} \left(\ket{0}\ket{0}-\ket{1}\ket{1}\right)
+\end{align*}
+\end{frame}
+
+\begin{frame}{Trick}
+\begin{align*}
+(B_V\otimes C_W) \kett{A_{W\to V}}
+&= (B_V\otimes C_W)\sum_{i,j}A_{i,j}\ket{i}_V\ket{j}_W\\
+&= \sum_{i,j}A_{i,j}(B_V \ket{i}_V)\otimes(C_W \ket{j}_W)\\
+&\overset{\mathcal{M}}{\longmapsto}
+\sum_{i,j}A_{i,j}(B_V \ket{i}_V)(\bra{j}_WC_W^\dagger)^*\\
+&=B_V \sum_{i,j}A_{i,j}\ket{i}_V\bra{j}_WC_W^T\\
+&=B_V A_{W\to V} C_W^T\\
+&\overset{\mathcal{M}^{-1}}{\longmapsto} \Kett{B_VA_{W\to V}C_W^T}
+\end{align*}
+\end{frame}
+
+\begin{frame}{Trick}
+\begin{align*}
+\braa{A_{W\to V}}\kett{B_{S\to W}}&=\sum_{i,j}A_{i,j}^*\bra{i}_V\bra{j}_W \sum_{k,\ell} B_{k,\ell}\ket{k}_W \ket{\ell}_S\\
+&=\sum_{i,j,\ell}A_{i,j}^* B_{j,\ell} \bra{i}_V\ket{\ell}_S=(A_{W\to V}^*B_{S\to W})^T=B_{S\to W}^TA_{W\to V}^\dagger
+\end{align*}
+\begin{align*}
+\braa{A_{V\to W}}\kett{B_{W\to S}}&=\sum_{i,j}A_{i,j}^*\bra{i}_W\bra{j}_V \sum_{k,\ell} B_{k,\ell}\ket{k}_S \ket{\ell}_W\\
+&=\sum_{i,j,k}A_{i,j}^* B_{k,i} \bra{j}_V\ket{k}_S=B_{W\to S}A_{V\to W}^*
+\end{align*}
+\end{frame}
+
+\begin{frame}{Quantum teleportation}
+\begin{align*}
+&\Tr_{AB}\left(\rho_A\otimes \Kett{\frac1{\sqrt{2}}I_{C\to B}}\Braa{\frac1{\sqrt{2}}I_{C\to B}} \quad \Kett{\frac1{\sqrt{2}}U_{B\to A}}\Braa{\frac1{\sqrt{2}}U_{B\to A}}\right)\\
+&=\Tr_{AB}\left(I_A\otimes \Kett{\frac1{\sqrt{2}}I_{C\to B}}\Braa{\frac1{\sqrt{2}}I_{C\to B}} \quad \Kett{\frac1{\sqrt{2}}\rho_A U_{B\to A}}\Braa{\frac1{\sqrt{2}}U_{B\to A}}\right)\\
+&=\Tr_{AB}\left(I_A\otimes \Kett{\frac1{\sqrt{2}}I_{C\to B}} \frac12 \rho_A U_{B\to A} I_{C\to B}^* \Braa{\frac1{\sqrt{2}}U_{B\to A}}\right)\\
+&=\Braa{\frac1{\sqrt{2}}U_{B\to A}} \Kett{\frac1{\sqrt{2}}I_{C\to B}} \frac12 \rho_A U_{C\to A}\\
+&=\frac12 (I_{C\to B})^T U_{B\to A}^\dagger \frac12 \rho_A U_{C\to A} = \frac14 U_{C\to A}^\dagger \rho_A U_{C\to A}\\
+\end{align*}
 \end{frame}
 
 \begin{frame}{Conditional density operator for pure state}
