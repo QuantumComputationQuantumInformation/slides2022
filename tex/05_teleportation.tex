@@ -58,6 +58,8 @@
 \newcommand\Kett[1]{\Bigl|#1\Big\rangle\!\!\Big\rangle}
 \newcommand\braa[1]{\langle\!\langle#1|}
 \newcommand\Braa[1]{\Bigl\langle\!\!\Bigl\langle#1\Bigr|}
+\newcommand\braakett[1]{\langle\!\langle#1\rangle\!\rangle}
+
 
 \title{Quantum teleportation}
 \author{Ryuhei Mori}
@@ -153,10 +155,12 @@ $T\colon \mathcal{H}(V) \to \mathcal{H}(W)$.
 $T\in\mathcal{L}(\mathcal{H}(\mathbb{C}^2))\colon \text{\emm{transposition}}$ according to $\{\ket{0},\ket{1}\}$.
 
 \vspace{2em}
-The transposition is obviously trace-preserving.
+The transposition is obviously linear and trace-preserving.
 
 \vspace{1em}
+\begin{lemma}
 The transposition is \emm{positive}.
+\end{lemma}
 \begin{proof}
 For any $A\succeq 0$ and $\ket{\psi}\in\mathbb{C}^2$,
 \begin{align*}
@@ -171,7 +175,9 @@ For any $A\succeq 0$ and $\ket{\psi}\in\mathbb{C}^2$,
 
 \begin{frame}{Positive but not completely positive 2/2}
 \small
-But, the transposition is \emm{not} completely positive.
+\begin{lemma}
+The transposition is \emm{not} completely positive.
+\end{lemma}
 \begin{proof}
 For $\ket{\Phi}:=\frac1{\sqrt{2}}(\ket{00}+\ket{11})$,
 \begin{align*}
@@ -184,7 +190,7 @@ For $\ket{\Phi}:=\frac1{\sqrt{2}}(\ket{00}+\ket{11})$,
 &\qquad +\ket{1}\bra{0}\otimes\emm{\ket{0}\bra{1}}+\ket{1}\bra{1}\otimes\emm{\ket{1}\bra{1}}\biggr)
 \end{align*}
 
-\vspace{-.5em}
+\vspace{-1.7em}
 \begin{align*}
 \ket{00}&\mapsto\ket{00}&
 \ket{01}&\mapsto\ket{10}&
@@ -517,15 +523,19 @@ P(a, b) = \Tr(\rho_{V\otimes W} (P_a \otimes Q_b)).
 P(a\mid b) &= \frac1{P(b)} \Tr(\rho_{V\otimes W} (P_a \otimes Q_b))
 =  \frac1{P(b)}\Tr(\emm{\Tr_W(\rho_{V\otimes W} (I_V\otimes Q_b))} P_a).
 \end{align*}
-$\rho_{V\mid Q_b} := \emm{\frac1{P(b)} {\Tr_W(\rho_{V\otimes W} (I_V\otimes Q_b))}}$.
 
 \vspace{2em}
-For $\rho_{V\otimes W}=\ket{\varphi}_{V\otimes W}\bra{\varphi}_{V\otimes W}$ and $Q_b=\ket{\psi_b}_W\bra{\psi_b}_W$,
-\begin{equation*}
-\emm{\Tr_W(\rho_{V\otimes W} (I\otimes Q_b))}
-=
-\Tr_W(\ket{\varphi}_{V\otimes W}\bra{\varphi}_{V\otimes W} (I_V\otimes \ket{\psi_b}_W\bra{\psi_b}_W))
-\end{equation*}
+\begin{align*}
+\rho_{V\mid Q_b} &:= \emm{\frac1{P(b)} {\Tr_W(\rho_{V\otimes W} (I_V\otimes Q_b))}}.
+\end{align*}
+
+%\vspace{2em}
+%For $\rho_{V\otimes W}=\ket{\varphi}_{V\otimes W}\bra{\varphi}_{V\otimes W}$ and $Q_b=\ket{\psi_b}_W\bra{\psi_b}_W$,
+%\begin{equation*}
+%\emm{\Tr_W(\rho_{V\otimes W} (I\otimes Q_b))}
+%=
+%\Tr_W(\ket{\varphi}_{V\otimes W}\bra{\varphi}_{V\otimes W} (I_V\otimes \ket{\psi_b}_W\bra{\psi_b}_W))
+%\end{equation*}
 \end{frame}
 
 \begin{frame}{Trick}
@@ -534,17 +544,29 @@ A_{W\to V}&=\sum_{i,j}A_{i,j}\ket{i}_V\bra{j}_W\\
 %|A\rangle\!\rangle &= \sum_{i,j}A_{i,j}\ket{i}_V\ket{j}_W
 \kett{A_{W\to V}} &:= \mathcal{M}^{-1}(A_{W\to V}) = \sum_{i,j}A_{i,j}\ket{i}_V\ket{j}_W
 \end{align*}
+\begin{align*}
+\langle A, B\rangle = \Tr(A^\dagger B) = \braakett{A\mid B}
+\end{align*}
 
 Examples
 \begin{align*}
 \Kett{\frac1{\sqrt{2}} I} &= \frac1{\sqrt{2}} \left(\ket{0}\ket{0}+\ket{1}\ket{1}\right)\\
 \Kett{\frac1{\sqrt{2}} X} &= \frac1{\sqrt{2}} \left(\ket{0}\ket{1}+\ket{1}\ket{0}\right)\\
-\Kett{\frac1{\sqrt{2}} Y} &= \frac1{\sqrt{2}} \left(-i\ket{0}\ket{1}+i\ket{1}\ket{0}\right)\\
+\Kett{\frac1{\sqrt{2}} Y} &= \frac1{\sqrt{2}} \left(-i\ket{0}\ket{1}+i\ket{1}\ket{0}\right)
+= -i \frac1{\sqrt{2}} \left(\ket{0}\ket{1}-\ket{1}\ket{0}\right)\\
 \Kett{\frac1{\sqrt{2}} Z} &= \frac1{\sqrt{2}} \left(\ket{0}\ket{0}-\ket{1}\ket{1}\right)
 \end{align*}
 \end{frame}
 
 \begin{frame}{Trick}
+\small
+\begin{lemma}
+\begin{align*}
+(B_V\otimes C_W) \kett{A_{W\to V}} &= \Kett{B_VA_{W\to V}C_W^T}.
+\end{align*}
+\end{lemma}
+\begin{proof}
+\vspace{-.5em}
 \begin{align*}
 (B_V\otimes C_W) \kett{A_{W\to V}}
 &= (B_V\otimes C_W)\sum_{i,j}A_{i,j}\ket{i}_V\ket{j}_W\\
@@ -553,38 +575,170 @@ Examples
 \sum_{i,j}A_{i,j}(B_V \ket{i}_V)(\bra{j}_WC_W^\dagger)^*\\
 &=B_V \sum_{i,j}A_{i,j}\ket{i}_V\bra{j}_WC_W^T\\
 &=B_V A_{W\to V} C_W^T\\
-&\overset{\mathcal{M}^{-1}}{\longmapsto} \Kett{B_VA_{W\to V}C_W^T}
+&\overset{\mathcal{M}^{-1}}{\longmapsto} \Kett{B_VA_{W\to V}C_W^T}.
 \end{align*}
+\end{proof}
 \end{frame}
 
 \begin{frame}{Trick}
+$\dim(A)=\dim(B)$.
 \begin{align*}
-\braa{A_{W\to V}}\kett{B_{S\to W}}&=\sum_{i,j}A_{i,j}^*\bra{i}_V\bra{j}_W \sum_{k,\ell} B_{k,\ell}\ket{k}_W \ket{\ell}_S\\
-&=\sum_{i,j,\ell}A_{i,j}^* B_{j,\ell} \bra{i}_V\ket{\ell}_S=(A_{W\to V}^*B_{S\to W})^T=B_{S\to W}^TA_{W\to V}^\dagger
+\Tr_A\left(\rho_A \,\Kett{L_{B\to A}}\Braa{L_{B\to A}}\right)
+&= \Tr_A\left(\rho_A \,\Kett{L_{A}I_{B\to A}}\Braa{L_{A}I_{B\to A}}\right)\\
+&= \Tr_A\left(\rho_A L_A\Kett{I_{B\to A}}\Braa{I_{B\to A}}L_A^\dagger\right)\\
+&= \Tr_A\left(L_A^\dagger \rho_A L_A\Kett{I_{B\to A}}\Braa{I_{B\to A}}\right)\\
+&= \Tr_A\left((L_B^\dagger \rho_B L_B)^T\Kett{I_{B\to A}}\Braa{I_{B\to A}}\right)\\
+&= (L_B^\dagger \rho_B L_B)^T\Tr_A\left(\Kett{I_{B\to A}}\Braa{I_{B\to A}}\right)\\
+&= (L_B^\dagger \rho_B L_B)^T
+\end{align*}
+\end{frame}
+
+\if0
+\begin{frame}{Trick}
+\begin{align*}
+\braakett{A_{W\to V}\mid B_{S\to W}}&=\sum_{i,j}A_{i,j}^*\bra{i}_V\bra{j}_W \sum_{k,\ell} B_{k,\ell}\ket{k}_W \ket{\ell}_S\\
+&=\sum_{i,j,\ell}A_{i,j}^* B_{j,\ell} \bra{i}_V\ket{\ell}_S=(A_{W\to V}^*B_{S\to W})^T=B_{S\to W}^TA_{W\to V}^\dagger\\
+\braakett{A_{V\to W}\mid B_{W\to S}}&=\sum_{i,j}A_{i,j}^*\bra{i}_W\bra{j}_V \sum_{k,\ell} B_{k,\ell}\ket{k}_S \ket{\ell}_W\\
+&=\sum_{i,j,k}A_{i,j}^* B_{k,i} \bra{j}_V\ket{k}_S=B_{W\to S}A_{V\to W}^*
+\end{align*}
+\end{frame}
+\fi
+
+\begin{frame}{Quantum teleportation}
+Alice sends a qubit $\rho_{A_1}$ to Bob using a classical channel and a shared Bell state
+$\ket{\Phi}_{A_2B} = \Kett{\frac1{\sqrt{2}} I_{B\to A_2}} = \frac1{\sqrt{2}}(\ket{0}_{A_2}\ket{0}_B+\ket{1}_{A_2}\ket{1}_B)$.
+\begin{enumerate}
+\item Alice measure $A_1A_2$ by the Bell basis $\Bigl\{\Kett{\frac1{\sqrt{2}} I_{A_2\to A_1}},\Kett{\frac1{\sqrt{2}} X_{A_2\to A_1}},\Kett{\frac1{\sqrt{2}} Y_{A_2\to A_1}},\Kett{\frac1{\sqrt{2}} Z_{A_2\to A_1}}\Bigr\}$.
+\item Send the measurement outcome (2bit) to Bob
+\item Bob apply the corresponding unitary to $B_2$.
+\end{enumerate}
+
+\vspace{1em}
+\[
+\Qcircuit @C=1.8em @R=0.8em @!R {
+\lstick{\ket{\psi}_{A_1}}& \qw & \qw & \ctrl{1} & \gate{H} & \meter & \cctrl{2}\\
+\lstick{\ket{0}_{A_2}} & \qw     & \targ & \targ & \qw & \meter \cwx[1] &\\
+\lstick{\ket{0}_B} & \gate{H}     & \ctrl{-1}   & \qw & \qw   & \gate{X} & \gate{Z} & \rstick{\ket{\psi}} \qw
+}
+\]
+\end{frame}
+
+\begin{frame}{Quantum teleportation}
+Let $A_1=A_2=B=\mathbb{C}^d$.
+For $L_{A_2\to A_1}$ satisfying $\Tr(L_{A_2\to A_1}^\dagger L_{A_2\to A_1})=1$,
+\begin{align*}
+&\Tr_{A_1A_2}\left(\rho_{A_1}\otimes \Kett{\frac1{\sqrt{d}}I_{B\to A_2}}\Braa{\frac1{\sqrt{d}}I_{B\to A_2}} \quad \Kett{L_{A_2\to A_1}}\Braa{L_{A_2\to A_1}}\right)\\
+&= \Tr_{A_2}\left(\Kett{\frac1{\sqrt{d}}I_{B\to A_2}}\Braa{\frac1{\sqrt{d}}I_{B\to A_2}} \quad (L_{A_2}^\dagger\rho_{A_2}L_{A_2})^T \right)\\
+&= \frac1d L_{B\to A_1}^\dagger \rho_{A_1} L_{B\to A_1}.
+%&= \Tr_{A_2}\left(\Kett{\frac1{\sqrt{d}}I_{B\to A_2}}\Braa{\frac1{\sqrt{d}}I_{B\to A_2}} \quad L_{B}^\dagger\rho_{A_2}L_{A_2})^T \right)\\
+%&=\Braa{L_{A_2\to A_1}}\, \rho_{A_1}\otimes \Kett{\frac1{\sqrt{d}}I_{B\to A_2}}\Braa{\frac1{\sqrt{d}}I_{B\to A_2}} \Kett{L_{A_2\to A_1}}\\
+%&=\Braa{I_{A_2\to A_1}}L_{A_1}^\dagger \rho_{A_1}\otimes \Kett{\frac1{\sqrt{d}}I_{B\to A_2}}\Braa{\frac1{\sqrt{d}}I_{B\to A_2}} L_{A_1}\Kett{I_{A_2\to A_1}}\\
+%&=\Braa{I_{A_2\to A_1}} \emm{L_{A_1}^\dagger \rho_{A_1} L_{A_1}}\otimes \Kett{\frac1{\sqrt{d}}I_{B\to A_2}}\Braa{\frac1{\sqrt{d}}I_{B\to A_2}} \Kett{I_{A_2\to A_1}}\\
+%&=\frac1{\sqrt{d}} (I_{B\to A_2})^T L_{A_2\to A_1}^\dagger \frac1{\sqrt{d}} \rho_{A_1} L_{B\to A_1} = \frac1d L_{B\to A_1}^\dagger \rho_{A_1} L_{B\to A_1}
+\end{align*}
+
+\vspace{1.5em}
+When $L_{A_2\to A_1} = \frac1{\sqrt{d}} U_{A_2\to A_1}$ for some unitary matrix (isometry) $U_{A_2\to A_1}$,
+\begin{equation*}
+\frac1d L_{B\to A_1}^\dagger \rho_{A_1} L_{B\to A_1} = \frac1{d^2} \emm{U_{B\to A_1}^\dagger \rho_{A_1} U_{B\to A_1}}.
+\end{equation*}
+
+The probability that $\Kett{L_{A_2\to A_1}}\Braa{L_{A_2\to A_1}}$ is measured is $\frac1{d^2}$.
+\end{frame}
+
+\begin{frame}{Orthonormal unitaries}
+When $d=2$, $\frac1{\sqrt{2}}I,\,\frac1{\sqrt{2}}X,\,\frac1{\sqrt{2}}Y,\,\frac1{\sqrt{2}}Z$ are orthonormal unitaries in $\mathcal{L}(\mathbb{C}^2)$.
+
+\vspace{3em}
+For $d\ge 3$, does there exists $d^2$ orthonormal unitaries?
+\end{frame}
+
+\if0
+\begin{frame}{Quantum teleportation}
+Let $A_1=A_2=B=\mathbb{C}^d$.
+For $L_{A_2\to A_1}$ satisfying $\Tr(L_{A_2\to A_1}^\dagger L_{A_2\to A_1})=1$,
+\begin{align*}
+&\Tr_{A_1A_2}\left(\rho_{A_1}\otimes \Kett{\frac1{\sqrt{d}}I_{B\to A_2}}\Braa{\frac1{\sqrt{d}}I_{B\to A_2}} \quad \Kett{L_{A_2\to A_1}}\Braa{L_{A_2\to A_1}}\right)\\
+&=\Tr_{A_1A_2}\left(I_{A_1}\otimes \Kett{\frac1{\sqrt{d}}I_{B\to A_2}}\Braa{\frac1{\sqrt{d}}I_{B\to A_2}} \quad \Kett{\rho_{A_1} L_{A_2\to A_1}}\Braa{L_{A_2\to A_1}}\right)\\
+&=\Tr_{A_1A_2}\left(I_{A_1}\otimes \Kett{\frac1{\sqrt{d}}I_{B\to A_2}} \frac1{\sqrt{d}} \rho_{A_1} L_{A_2\to A_1} I_{B\to A_2}^* \Braa{L_{A_2\to A_1}}\right)\\
+&=\Braa{L_{A_2\to A_1}} \Kett{\frac1{\sqrt{d}}I_{B\to A_2}} \frac1{\sqrt{d}} \rho_{A_1} L_{B\to A_1}\\
+&=\frac1{\sqrt{d}} (I_{B\to A_2})^T L_{A_2\to A_1}^\dagger \frac1{\sqrt{d}} \rho_{A_1} L_{B\to A_1} = \frac1d L_{B\to A_1}^\dagger \rho_{A_1} L_{B\to A_1}
+\end{align*}
+
+\vspace{.5em}
+When $L_{A_2\to A_1} = \frac1{\sqrt{d}} U_{A_2\to A_1}$ for some unitary matrix (isometry) $U_{A_2\to A_1}$,
+\begin{equation*}
+\frac1d L_{B\to A_1}^\dagger \rho_{A_1} L_{B\to A_1} = \frac1{d^2} \emm{U_{B\to A_1}^\dagger \rho_{A_1} U_{B\to A_1}}.
+\end{equation*}
+\end{frame}
+\fi
+
+
+
+\if0
+\begin{frame}{Quantum teleportation}
+\small
+\begin{align*}
+\ket{\Phi}_{A_2\otimes B} &= \frac1{\sqrt{2}}\left(\ket{0}_{A_2}\ket{0}_B + \ket{1}_{A_2}\ket{1}_B\right)
 \end{align*}
 \begin{align*}
-\braa{A_{V\to W}}\kett{B_{W\to S}}&=\sum_{i,j}A_{i,j}^*\bra{i}_W\bra{j}_V \sum_{k,\ell} B_{k,\ell}\ket{k}_S \ket{\ell}_W\\
-&=\sum_{i,j,k}A_{i,j}^* B_{k,i} \bra{j}_V\ket{k}_S=B_{W\to S}A_{V\to W}^*
+(H_{A_1}\otimes I_{A_2}\otimes I_B)(\mathsf{CNOT}_{A_1A_2}\otimes I_B)\ket{\psi}_{A_1}\ket{\Phi}_{A_2\otimes B}
+\end{align*}
+For $\ket{\psi}_{A_1}=\alpha\ket{0}_{A_1}+\beta\ket{1}_{A_1}$
+\begin{align*}
+\ket{\psi}_{A_1}\ket{\Phi}_{A_2\otimes B} &= \left(\alpha\ket{0}_{A_1}+\beta\ket{1}_{A_1}\right)\frac1{\sqrt{2}}\left(\ket{0}_{A_2}\ket{0}_B + \ket{1}_{A_2}\ket{1}_B\right)\\
+ &\overset{\emm{\mathsf{CNOT}_{A_1A_2}}}{\longmapsto} \frac{\alpha}{\sqrt{2}}\left(\ket{0}_{A_1}\ket{0}_{A_2}\ket{0}_B + \ket{0}_{A_1}\ket{1}_{A_2}\ket{1}_B\right)\\
+ &\qquad + \frac{\beta}{\sqrt{2}}\left(\ket{1}_{A_1}\ket{1}_{A_2}\ket{0}_B + \ket{1}_{A_1}\ket{0}_{A_2}\ket{1}_B\right)\\
+ &\overset{\emm{H_{A_1}}}{\longmapsto} \frac{\alpha}{2}\left(\ket{000}_{A_1A_2B} +\ket{100}_{A_1A_2B} + \ket{011}_{A_1A_2B} + \ket{111}_{A_1A_2B}\right)\\
+ &\quad + \frac{\beta}{2}\left(\ket{010}_{A_1A_2B} -\ket{110}_{A_1A_2B} + \ket{001}_{A_1A_2B} - \ket{101}_{A_1A_2B}\right)
 \end{align*}
 \end{frame}
 
 \begin{frame}{Quantum teleportation}
-Let $A=B=C=\mathbb{C}^d$.
-For $L_{B\to A}$ satisfying $\Tr(L_{B\to A}^\dagger L_{B\to A})=1$,
 \begin{align*}
-&\Tr_{AB}\left(\rho_A\otimes \Kett{\frac1{\sqrt{d}}I_{C\to B}}\Braa{\frac1{\sqrt{d}}I_{C\to B}} \quad \Kett{L_{B\to A}}\Braa{L_{B\to A}}\right)\\
-&=\Tr_{AB}\left(I_A\otimes \Kett{\frac1{\sqrt{d}}I_{C\to B}}\Braa{\frac1{\sqrt{d}}I_{C\to B}} \quad \Kett{\rho_A L_{B\to A}}\Braa{L_{B\to A}}\right)\\
-&=\Tr_{AB}\left(I_A\otimes \Kett{\frac1{\sqrt{d}}I_{C\to B}} \frac1{\sqrt{d}} \rho_A L_{B\to A} I_{C\to B}^* \Braa{L_{B\to A}}\right)\\
-&=\Braa{L_{B\to A}} \Kett{\frac1{\sqrt{d}}I_{C\to B}} \frac1{\sqrt{d}} \rho_A L_{C\to A}\\
-&=\frac1{\sqrt{d}} (I_{C\to B})^T L_{B\to A}^\dagger \frac1{\sqrt{d}} \rho_A L_{C\to A} = \frac1d L_{C\to A}^\dagger \rho_A L_{C\to A}
+ &\frac{\alpha}{2}\left(\ket{000}_{A_1A_2B} +\ket{100}_{A_1A_2B} + \ket{011}_{A_1A_2B} + \ket{111}_{A_1A_2B}\right)\\
+ &\quad + \frac{\beta}{2}\left(\ket{010}_{A_1A_2B} -\ket{110}_{A_1A_2B} + \ket{001}_{A_1A_2B} - \ket{101}_{A_1A_2B}\right)\\
+&=\frac12\Biggl[\emm{\ket{00}_{A_1A_2}}\left(\alpha\ket{0}_B+\beta\ket{1}_B\right) + \emm{\ket{01}_{A_1A_2}}\left(\alpha\ket{1}_B+\beta\ket{0}_B\right)\\
+&\qquad + \emm{\ket{10}_{A_1A_2}}\left(\alpha\ket{0}_B-\beta\ket{1}_B\right) + \emm{\ket{11}_{A_1A_2}}\left(\alpha\ket{1}_B-\beta\ket{0}_B\right)\Biggr]
 \end{align*}
 
-\vspace{.5em}
-When $L_{B\to A} = \frac1{\sqrt{d}} U_{B\to A}$ for some unitary matrix (isometry) $U_{B\to A}$,
-\begin{equation*}
-\frac1d L_{C\to A}^\dagger \rho_A L_{C\to A} = \frac1{d^2} U_{C\to A}^\dagger \rho_A U_{C\to A}.
-\end{equation*}
+According to the measurement outcome of $A_1A_2$
+\begin{align*}
+00 &\Rightarrow I\\
+01 &\Rightarrow X\\
+10 &\Rightarrow Z\\
+11 &\Rightarrow ZX\\
+\end{align*}
 \end{frame}
+\fi
+
+\if0
+\begin{frame}{Transpose trick}
+\small
+\begin{align*}
+\ket{\Phi} := \frac1{\sqrt{d}} \sum_{j=0}^{d-1} \ket{j}\ket{j}
+\end{align*}
+\begin{lemma}
+\begin{align*}
+(A\otimes I) \ket{\Phi} &= (I\otimes A^T)\ket{\Phi}
+\end{align*}
+\end{lemma}
+\begin{proof}
+\begin{align*}
+&\mathcal{M}\left((A\otimes I) \ket{\Phi}\right)
+=\mathcal{M}\left(\frac1{\sqrt{d}}\sum_{j=0}^{d-1}A\ket{j}\ket{j}\right)\\
+&=\frac1{\sqrt{d}}\sum_{j=0}^{d-1}A\ket{j}\bra{j}
+=\frac1{\sqrt{d}}A \sum_{j=0}^{d-1}\ket{j}\bra{j}
+=\frac1{\sqrt{d}}\sum_{j=0}^{d-1}\ket{j}\bra{j}A\\
+&\mathcal{M}\left((I\otimes A^T) \ket{\Phi}\right)
+=\frac1{\sqrt{d}}\sum_{j=0}^{d-1}\ket{j}(A^T\ket{j})^T\\
+\end{align*}
+\end{proof}
+\end{frame}
+
+\begin{frame}{BB84 protocol}
+\end{frame}
+\fi
 
 \begin{frame}{Conditional density operator for pure state}
 \small
@@ -621,81 +775,6 @@ if the outcome is 0, the state $\frac1{\sqrt{|\alpha_{0,0}|^2+|\alpha_{1,0}|^2}}
 \vspace{2em}
 if the outcome is 1, the state $\frac1{\sqrt{|\alpha_{0,1}|^2+|\alpha_{1,1}|^2}}\sum_{i=0}^1 \alpha_{i,1}\ket{i}_V$.
 \end{frame}
-
-
-\begin{frame}{Quantum teleportation}
-
-\[
-\Qcircuit @C=1.8em @R=0.8em @!R {
-\lstick{\ket{\psi}_{A_1}}& \qw & \qw & \ctrl{1} & \gate{H} & \meter & \cctrl{2}\\
-\lstick{\ket{0}_{A_2}} & \qw     & \targ & \targ & \qw & \meter \cwx[1] &\\
-\lstick{\ket{0}_B} & \gate{H}     & \ctrl{-1}   & \qw & \qw   & \gate{X} & \gate{Z} & \rstick{\ket{\psi}} \qw
-}
-\]
-\end{frame}
-
-\begin{frame}{Quantum teleportation}
-\small
-\begin{align*}
-\ket{\Phi}_{A_2\otimes B} &= \frac1{\sqrt{2}}\left(\ket{0}_{A_2}\ket{0}_B + \ket{1}_{A_2}\ket{1}_B\right)
-\end{align*}
-\begin{align*}
-(H_{A_1}\otimes I_{A_2}\otimes I_B)(\mathsf{CNOT}_{A_1A_2}\otimes I_B)\ket{\psi}_{A_1}\ket{\Phi}_{A_2\otimes B}
-\end{align*}
-For $\ket{\psi}_{A_1}=\alpha\ket{0}_{A_1}+\beta\ket{1}_{A_1}$
-\begin{align*}
-\ket{\psi}_{A_1}\ket{\Phi}_{A_2\otimes B} &= \left(\alpha\ket{0}_{A_1}+\beta\ket{1}_{A_1}\right)\frac1{\sqrt{2}}\left(\ket{0}_{A_2}\ket{0}_B + \ket{1}_{A_2}\ket{1}_B\right)\\
- &\overset{\emm{\mathsf{CNOT}_{A_1A_2}}}{\longmapsto} \frac{\alpha}{\sqrt{2}}\left(\ket{0}_{A_1}\ket{0}_{A_2}\ket{0}_B + \ket{0}_{A_1}\ket{1}_{A_2}\ket{1}_B\right)\\
- &\qquad + \frac{\beta}{\sqrt{2}}\left(\ket{1}_{A_1}\ket{1}_{A_2}\ket{0}_B + \ket{1}_{A_1}\ket{0}_{A_2}\ket{1}_B\right)\\
- &\overset{\emm{H_{A_1}}}{\longmapsto} \frac{\alpha}{2}\left(\ket{000}_{A_1A_2B} +\ket{100}_{A_1A_2B} + \ket{011}_{A_1A_2B} + \ket{111}_{A_1A_2B}\right)\\
- &\quad + \frac{\beta}{2}\left(\ket{010}_{A_1A_2B} -\ket{110}_{A_1A_2B} + \ket{001}_{A_1A_2B} - \ket{101}_{A_1A_2B}\right)
-\end{align*}
-\end{frame}
-
-\begin{frame}{Quantum teleportation}
-\begin{align*}
- &\frac{\alpha}{2}\left(\ket{000}_{A_1A_2B} +\ket{100}_{A_1A_2B} + \ket{011}_{A_1A_2B} + \ket{111}_{A_1A_2B}\right)\\
- &\quad + \frac{\beta}{2}\left(\ket{010}_{A_1A_2B} -\ket{110}_{A_1A_2B} + \ket{001}_{A_1A_2B} - \ket{101}_{A_1A_2B}\right)\\
-&=\frac12\Biggl[\emm{\ket{00}_{A_1A_2}}\left(\alpha\ket{0}_B+\beta\ket{1}_B\right) + \emm{\ket{01}_{A_1A_2}}\left(\alpha\ket{1}_B+\beta\ket{0}_B\right)\\
-&\qquad + \emm{\ket{10}_{A_1A_2}}\left(\alpha\ket{0}_B-\beta\ket{1}_B\right) + \emm{\ket{11}_{A_1A_2}}\left(\alpha\ket{1}_B-\beta\ket{0}_B\right)\Biggr]
-\end{align*}
-
-According to the measurement outcome of $A_1A_2$
-\begin{align*}
-00 &\Rightarrow I\\
-01 &\Rightarrow X\\
-10 &\Rightarrow Z\\
-11 &\Rightarrow ZX\\
-\end{align*}
-\end{frame}
-
-\if0
-\begin{frame}{Transpose trick}
-\small
-\begin{align*}
-\ket{\Phi} := \frac1{\sqrt{d}} \sum_{j=0}^{d-1} \ket{j}\ket{j}
-\end{align*}
-\begin{lemma}
-\begin{align*}
-(A\otimes I) \ket{\Phi} &= (I\otimes A^T)\ket{\Phi}
-\end{align*}
-\end{lemma}
-\begin{proof}
-\begin{align*}
-&\mathcal{M}\left((A\otimes I) \ket{\Phi}\right)
-=\mathcal{M}\left(\frac1{\sqrt{d}}\sum_{j=0}^{d-1}A\ket{j}\ket{j}\right)\\
-&=\frac1{\sqrt{d}}\sum_{j=0}^{d-1}A\ket{j}\bra{j}
-=\frac1{\sqrt{d}}A \sum_{j=0}^{d-1}\ket{j}\bra{j}
-=\frac1{\sqrt{d}}\sum_{j=0}^{d-1}\ket{j}\bra{j}A\\
-&\mathcal{M}\left((I\otimes A^T) \ket{\Phi}\right)
-=\frac1{\sqrt{d}}\sum_{j=0}^{d-1}\ket{j}(A^T\ket{j})^T\\
-\end{align*}
-\end{proof}
-\end{frame}
-
-\begin{frame}{BB84 protocol}
-\end{frame}
-\fi
 
 \begin{frame}{Assignments}
 \begin{enumerate}
