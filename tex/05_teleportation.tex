@@ -65,7 +65,7 @@
 \author{Ryuhei Mori}
 %\institute{$\vcenter{\hbox{\includegraphics[width=30pt]{ELC_logo}}}$ Postdoctoral Fellow of ELC\\ $\vcenter{\hbox{\includegraphics[width=20pt]{titech_logo}}}$ Tokyo Institute of Technology}
 \institute{Tokyo Institute of Technology}
-\date{15, Oct., 2021}
+\date{}
 
 
 
@@ -521,7 +521,7 @@ P(a, b) = \Tr(\rho_{V\otimes W} (P_a \otimes Q_b)).
 \end{align*}
 \begin{align*}
 P(a\mid b) &= \frac1{P(b)} \Tr(\rho_{V\otimes W} (P_a \otimes Q_b))
-=  \frac1{P(b)}\Tr(\emm{\Tr_W(\rho_{V\otimes W} (I_V\otimes Q_b))} P_a).
+=  \emm{\frac1{P(b)}}\Tr(\emm{\Tr_W(\rho_{V\otimes W} (I_V\otimes Q_b))} P_a).
 \end{align*}
 
 \vspace{2em}
@@ -545,16 +545,18 @@ A_{W\to V}&=\sum_{i,j}A_{i,j}\ket{i}_V\bra{j}_W\\
 \kett{A_{W\to V}} &:= \mathcal{M}^{-1}(A_{W\to V}) = \sum_{i,j}A_{i,j}\ket{i}_V\ket{j}_W
 \end{align*}
 \begin{align*}
-\langle A, B\rangle = \Tr(A^\dagger B) = \braakett{A\mid B}
+\langle A_{W\to V}, B_{W\to V}\rangle = \Tr(A_{W\to V}^\dagger B_{W\to V}) = \braakett{A_{W\to V}\mid B_{W\to V}}
 \end{align*}
 
 Examples
+\small
 \begin{align*}
-\Kett{\frac1{\sqrt{2}} I} &= \frac1{\sqrt{2}} \left(\ket{0}\ket{0}+\ket{1}\ket{1}\right)\\
-\Kett{\frac1{\sqrt{2}} X} &= \frac1{\sqrt{2}} \left(\ket{0}\ket{1}+\ket{1}\ket{0}\right)\\
-\Kett{\frac1{\sqrt{2}} Y} &= \frac1{\sqrt{2}} \left(-i\ket{0}\ket{1}+i\ket{1}\ket{0}\right)
-= -i \frac1{\sqrt{2}} \left(\ket{0}\ket{1}-\ket{1}\ket{0}\right)\\
-\Kett{\frac1{\sqrt{2}} Z} &= \frac1{\sqrt{2}} \left(\ket{0}\ket{0}-\ket{1}\ket{1}\right)
+\Kett{\frac1{\sqrt{2}} I_{W\to V}} &= \frac1{\sqrt{2}} \left(\ket{0}_V\ket{0}_W+\ket{1}_V\ket{1}_W\right)\\
+\Kett{\frac1{\sqrt{2}} X_{W\to V}} &= \frac1{\sqrt{2}} \left(\ket{0}_V\ket{1}_W+\ket{1}_V\ket{0}_W\right)\\
+%\Kett{\frac1{\sqrt{2}} Y_{W\to V}} &= \frac1{\sqrt{2}} \left(-i\ket{0}_V\ket{1}_W+i\ket{1}_V\ket{0}_W\right)
+%= -i \frac1{\sqrt{2}} \left(\ket{0}_V\ket{1}_W-\ket{1}_V\ket{0}_W\right)\\
+\Kett{\frac1{\sqrt{2}} (ZX)_{W\to V}} &= \frac1{\sqrt{2}} \left(\ket{0}_V\ket{1}_W-\ket{1}_V\ket{0}_W\right)\\
+\Kett{\frac1{\sqrt{2}} Z_{W\to V}} &= \frac1{\sqrt{2}} \left(\ket{0}_V\ket{0}_W-\ket{1}_V\ket{1}_W\right)
 \end{align*}
 \end{frame}
 
@@ -607,8 +609,10 @@ $\dim(A)=\dim(B)$.
 \begin{frame}{Quantum teleportation}
 Alice sends a qubit $\rho_{A_1}$ to Bob using a classical channel and a shared Bell state
 $\ket{\Phi}_{A_2B} = \Kett{\frac1{\sqrt{2}} I_{B\to A_2}} = \frac1{\sqrt{2}}(\ket{0}_{A_2}\ket{0}_B+\ket{1}_{A_2}\ket{1}_B)$.
+
+\vspace{1em}
 \begin{enumerate}
-\item Alice measure $A_1A_2$ by the Bell basis $\Bigl\{\Kett{\frac1{\sqrt{2}} I_{A_2\to A_1}},\Kett{\frac1{\sqrt{2}} X_{A_2\to A_1}},\Kett{\frac1{\sqrt{2}} Y_{A_2\to A_1}},\Kett{\frac1{\sqrt{2}} Z_{A_2\to A_1}}\Bigr\}$.
+\item Alice measure $A_1A_2$ by the Bell basis $\Bigl\{\Kett{\frac1{\sqrt{2}} I_{A_2\to A_1}},\Kett{\frac1{\sqrt{2}} X_{A_2\to A_1}},\Kett{\frac1{\sqrt{2}} Z_{A_2\to A_1}},\Kett{\frac1{\sqrt{2}} (ZX)_{A_2\to A_1}}\Bigr\}$.
 \item Send the measurement outcome (2bit) to Bob
 \item Bob apply the corresponding unitary to $B_2$.
 \end{enumerate}
@@ -643,14 +647,76 @@ When $L_{A_2\to A_1} = \frac1{\sqrt{d}} U_{A_2\to A_1}$ for some unitary matrix 
 \frac1d L_{B\to A_1}^\dagger \rho_{A_1} L_{B\to A_1} = \frac1{d^2} \emm{U_{B\to A_1}^\dagger \rho_{A_1} U_{B\to A_1}}.
 \end{equation*}
 
-The probability that $\Kett{L_{A_2\to A_1}}\Braa{L_{A_2\to A_1}}$ is measured is $\frac1{d^2}$.
+The probability that $\Kett{\frac1{\sqrt{d}}U_{A_2\to A_1}}\Braa{\frac1{\sqrt{d}}U_{A_2\to A_1}}$ is measured is $\frac1{d^2}$.
 \end{frame}
 
 \begin{frame}{Orthonormal unitaries}
-When $d=2$, $\frac1{\sqrt{2}}I,\,\frac1{\sqrt{2}}X,\,\frac1{\sqrt{2}}Y,\,\frac1{\sqrt{2}}Z$ are orthonormal unitaries in $\mathcal{L}(\mathbb{C}^2)$.
+When $d=2$, $\frac1{\sqrt{2}}I,\,\frac1{\sqrt{2}}X,\,\frac1{\sqrt{2}}Z,\,\frac1{\sqrt{2}}XZ$ are orthonormal unitaries in $\mathcal{L}(\mathbb{C}^2)$.
 
-\vspace{3em}
+\vspace{2em}
 For $d\ge 3$, does there exists $d^2$ orthonormal unitaries?
+
+\vspace{1em}
+Discrete Weyl operators:
+
+\vspace{.5em}
+Let $\omega$ be a primitive $d$-th root of unity, i.e., $\omega=\exp\{i2\pi/d\}$.
+
+\begin{align*}
+\emm{Z}&:=
+\begin{bmatrix}
+1&0&0\\
+0&\omega&0\\
+0&0&\omega^2
+\end{bmatrix},&
+\emm{X}&:=
+\begin{bmatrix}
+0&0&1\\
+1&0&0\\
+0&1&0
+\end{bmatrix},&
+\end{align*}
+
+\begin{align*}
+Z^d&=I,& X^d&=I\\
+ZX&=\omega XZ
+\end{align*}
+
+%\vspace{-1em}
+\begin{align*}
+W(s,t)&:=X^sZ^t\qquad\text{for }\quad s,\, t \in\{0,1,\dotsc,d-1\}
+\end{align*}
+\end{frame}
+
+\begin{frame}{Orthogonality of Weyl operators}
+\begin{align*}
+W(s,t)&:=X^sZ^t\qquad\text{for }\quad s,\, t \in\{0,1,\dotsc,d-1\}
+\end{align*}
+
+\begin{align*}
+W(s,t)^\dagger &= Z^{\dagger t} X^{\dagger s} = Z^{-t} X^{-s} = \omega^{st} X^{-s}Z^{-t} = \omega^{st} W(-s,-t)\\
+W(s,t)W(u,v) &= \omega^{tu} W(s+u, t+v) = \omega^{tu-sv} W(u,v)W(s,t)
+\end{align*}
+
+\begin{align*}
+\Tr(W(s,t)) &= 
+\begin{cases}
+d,&\text{if } (s,t)=(0,0)\\
+0,&\text{otherwise.}
+\end{cases}
+\end{align*}
+
+\begin{align*}
+\emm{\langle W(s,t), W(u,v)\rangle}
+&=\Tr(W(s,t)^\dagger W(u,v))\\
+&=\omega^{st}\, \Tr(W(-s,-t) W(u,v))\\
+&=\omega^{st-tu}\, \Tr(W(u-s,v-t))\\
+&=
+\begin{cases}
+d,&\text{if } (u,v)=(s,t)\\
+0,&\text{otherwise.}
+\end{cases}
+\end{align*}
 \end{frame}
 
 \if0
