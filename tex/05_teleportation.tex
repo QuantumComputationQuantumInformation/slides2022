@@ -509,9 +509,35 @@ In the most of quantum computing, only \emm{pure} states and \emm{unitary} opera
 =
 \frac1{\sqrt{2}}(\ket{0}\ket{y}+(-1)^x\ket{1}\ket{y})\\
  &\longmapsto
-\frac1{\sqrt{2}}(\ket{0}\ket{y}+(-1)^x\ket{1}\ket{\bar{y}}).
+\frac1{\sqrt{2}}(\ket{0}\ket{y}+(-1)^x\ket{1}\ket{\bar{y}}) = \ket{\Phi_{xy}}.
 \end{align*}
 
+\end{frame}
+
+\begin{frame}{Measurements}
+The measurement with the \emm{computational basis} $(\ket{0},\ket{1})$.
+\[
+\Qcircuit @C=1em @R=.7em {
+  & \qw      & \meter 
+}
+\]
+
+\vspace{1em}
+The measurement by $(\ket{+},\ket{-})$.
+\[
+\Qcircuit @C=1em @R=.7em {
+  & \qw      & \gate{H} & \qw & \meter 
+}
+\]
+
+\vspace{1em}
+The measurement by the Bell basis.
+\[
+\Qcircuit @C=1em @R=.7em {
+  & \ctrl{1} & \gate{H} &  \qw & \meter \\
+  & \targ    & \qw    &  \qw & \meter 
+}
+\]
 \end{frame}
 
 \begin{frame}{Conditional density operator}
@@ -538,7 +564,7 @@ P(a\mid b) &= \frac1{P(b)} \Tr(\rho_{V\otimes W} (P_a \otimes Q_b))
 %\end{equation*}
 \end{frame}
 
-\begin{frame}{Trick}
+\begin{frame}{$V\otimes W\cong \mathcal{L}(W, V)$}
 \begin{align*}
 A_{W\to V}&=\sum_{i,j}A_{i,j}\ket{i}_V\bra{j}_W\\
 %|A\rangle\!\rangle &= \sum_{i,j}A_{i,j}\ket{i}_V\ket{j}_W
@@ -551,12 +577,12 @@ A_{W\to V}&=\sum_{i,j}A_{i,j}\ket{i}_V\bra{j}_W\\
 Examples
 \small
 \begin{align*}
-\Kett{\frac1{\sqrt{2}} I_{W\to V}} &= \frac1{\sqrt{2}} \left(\ket{0}_V\ket{0}_W+\ket{1}_V\ket{1}_W\right)\\
-\Kett{\frac1{\sqrt{2}} X_{W\to V}} &= \frac1{\sqrt{2}} \left(\ket{0}_V\ket{1}_W+\ket{1}_V\ket{0}_W\right)\\
+\Kett{\frac1{\sqrt{2}} I_{W\to V}} &= \frac1{\sqrt{2}} \left(\ket{0}_V\ket{0}_W+\ket{1}_V\ket{1}_W\right)=\ket{\Phi_{00}}\\
+\Kett{\frac1{\sqrt{2}} X_{W\to V}} &= \frac1{\sqrt{2}} \left(\ket{0}_V\ket{1}_W+\ket{1}_V\ket{0}_W\right)=\ket{\Phi_{01}}\\
 %\Kett{\frac1{\sqrt{2}} Y_{W\to V}} &= \frac1{\sqrt{2}} \left(-i\ket{0}_V\ket{1}_W+i\ket{1}_V\ket{0}_W\right)
 %= -i \frac1{\sqrt{2}} \left(\ket{0}_V\ket{1}_W-\ket{1}_V\ket{0}_W\right)\\
-\Kett{\frac1{\sqrt{2}} (ZX)_{W\to V}} &= \frac1{\sqrt{2}} \left(\ket{0}_V\ket{1}_W-\ket{1}_V\ket{0}_W\right)\\
-\Kett{\frac1{\sqrt{2}} Z_{W\to V}} &= \frac1{\sqrt{2}} \left(\ket{0}_V\ket{0}_W-\ket{1}_V\ket{1}_W\right)
+\Kett{\frac1{\sqrt{2}} Z_{W\to V}} &= \frac1{\sqrt{2}} \left(\ket{0}_V\ket{0}_W-\ket{1}_V\ket{1}_W\right)=\ket{\Phi_{10}}\\
+\Kett{\frac1{\sqrt{2}} (ZX)_{W\to V}} &= \frac1{\sqrt{2}} \left(\ket{0}_V\ket{1}_W-\ket{1}_V\ket{0}_W\right)=\ket{\Phi_{11}}.
 \end{align*}
 \end{frame}
 
@@ -650,11 +676,11 @@ When $L_{A_2\to A_1} = \frac1{\sqrt{d}} U_{A_2\to A_1}$ for some unitary matrix 
 The probability that $\Kett{\frac1{\sqrt{d}}U_{A_2\to A_1}}\Braa{\frac1{\sqrt{d}}U_{A_2\to A_1}}$ is measured is $\frac1{d^2}$.
 \end{frame}
 
-\begin{frame}{Orthonormal unitaries}
-When $d=2$, $\frac1{\sqrt{2}}I,\,\frac1{\sqrt{2}}X,\,\frac1{\sqrt{2}}Z,\,\frac1{\sqrt{2}}XZ$ are orthonormal unitaries in $\mathcal{L}(\mathbb{C}^2)$.
+\begin{frame}{Orthogonal unitaries}
+When $d=2$, $I,\,X,\,Z,\,ZX$ are orthogonal unitaries in $\mathcal{L}(\mathbb{C}^2)$.
 
 \vspace{2em}
-For $d\ge 3$, does there exists $d^2$ orthonormal unitaries?
+For $d\ge 3$, does there exists $d^2$ orthogonal unitaries?
 
 \vspace{1em}
 Discrete Weyl operators:
@@ -684,13 +710,14 @@ ZX&=\omega XZ
 
 %\vspace{-1em}
 \begin{align*}
-W(s,t)&:=X^sZ^t\qquad\text{for }\quad s,\, t \in\{0,1,\dotsc,d-1\}
+W(s,t)&:=X^sZ^t
 \end{align*}
 \end{frame}
 
 \begin{frame}{Orthogonality of Weyl operators}
+\small
 \begin{align*}
-W(s,t)&:=X^sZ^t\qquad\text{for }\quad s,\, t \in\{0,1,\dotsc,d-1\}
+W(s,t)&:=X^sZ^t.
 \end{align*}
 
 \begin{align*}
@@ -701,7 +728,7 @@ W(s,t)W(u,v) &= \omega^{tu} W(s+u, t+v) = \omega^{tu-sv} W(u,v)W(s,t)
 \begin{align*}
 \Tr(W(s,t)) &= 
 \begin{cases}
-d,&\text{if } (s,t)=(0,0)\\
+d,&\text{if } (s,t)=(0,0)\bmod d\\
 0,&\text{otherwise.}
 \end{cases}
 \end{align*}
@@ -713,10 +740,12 @@ d,&\text{if } (s,t)=(0,0)\\
 &=\omega^{st-tu}\, \Tr(W(u-s,v-t))\\
 &=
 \begin{cases}
-d,&\text{if } (u,v)=(s,t)\\
+d,&\text{if } (u,v)=(s,t)\bmod d\\
 0,&\text{otherwise.}
 \end{cases}
 \end{align*}
+
+$\Bigl\{\frac1{\sqrt{d}}W(s,t)\mid s,\, t \in\{0,1,\dotsc,d-1\}\Bigr\}$ is \emm{orthonormal basis}.
 \end{frame}
 
 \if0
