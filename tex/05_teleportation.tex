@@ -121,22 +121,30 @@ $\emm{T^\dagger}$ is an \emm{adjoint} map of $T$.
 \end{frame}
 
 \begin{frame}{No-cloning theorem}
+\small
+\begin{theorem}
+There is no quantum channel $T\colon \mathcal{H}(\mathbb{C}^2)\to\mathcal{H}(\mathbb{C}^2\otimes\mathbb{C}^2)$ satisfying
+$T(\ket{\psi}\bra{\psi})=\emm{\ket{\psi}\bra{\psi}\otimes\ket{\psi}\bra{\psi}}$ for any $\ket{\psi}\in\mathbb{C}^2$.
+\end{theorem}
+\begin{proof}
+\vspace{-2em}
 \begin{align*}
-\ket{0}\bra{0} &\longmapsto \ket{0}\bra{0} \otimes \ket{0}\bra{0} \\
-\ket{1}\bra{1} &\longmapsto \ket{1}\bra{1} \otimes \ket{1}\bra{1}
+\ket{0}\bra{0} &\overset{T}{\longmapsto} \ket{0}\bra{0} \otimes \ket{0}\bra{0} \\
+\ket{1}\bra{1} &\overset{T}{\longmapsto} \ket{1}\bra{1} \otimes \ket{1}\bra{1}
 \end{align*}
 From the linearlity,
 \begin{align*}
-\frac12(\ket{0}\bra{0} + \ket{1}\bra{1}) &\longmapsto \frac12(\ket{0}\bra{0} \otimes \ket{0}\bra{0} + \ket{1}\bra{1} \otimes \ket{1}\bra{1}) 
+\frac12(\ket{0}\bra{0} + \ket{1}\bra{1}) &\overset{T}{\longmapsto} \frac12(\ket{0}\bra{0} \otimes \ket{0}\bra{0} + \ket{1}\bra{1} \otimes \ket{1}\bra{1}) 
 \end{align*}
 \begin{align*}
-\ket{+}\bra{+} &\longmapsto \ket{+}\bra{+} \otimes \ket{+}\bra{+} \\
-\ket{-}\bra{-} &\longmapsto \ket{-}\bra{-} \otimes \ket{-}\bra{-}
+\ket{+}\bra{+} &\overset{T}{\longmapsto} \ket{+}\bra{+} \otimes \ket{+}\bra{+} \\
+\ket{-}\bra{-} &\overset{T}{\longmapsto} \ket{-}\bra{-} \otimes \ket{-}\bra{-}
 \end{align*}
 \begin{align*}
-\frac12(\ket{+}\bra{+} + \ket{-}\bra{-}) &\longmapsto \frac12(\ket{+}\bra{+} \otimes \ket{+}\bra{+} + \ket{-}\bra{-} \otimes \ket{-}\bra{-}) 
+\frac12(\ket{+}\bra{+} + \ket{-}\bra{-}) &\overset{T}{\longmapsto} \frac12(\ket{+}\bra{+} \otimes \ket{+}\bra{+} + \ket{-}\bra{-} \otimes \ket{-}\bra{-}) 
 \end{align*}
-It's a contradiction.
+This is a contradiction.
+\end{proof}
 \end{frame}
 
 \begin{frame}{Axioms for quantum channel}
