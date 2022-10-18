@@ -557,20 +557,20 @@ C\succeq 0\\
 \begin{frame}{Assignments}
 \small
 \begin{enumerate}
-\setlength{\itemsep}{1em}
+\setlength{\itemsep}{.6em}
 \item Let
 \begin{align*}
 T_{2i-1} &:= \underbrace{I\otimes\dotsm\otimes I}_{i-1}\otimes X\otimes \underbrace{Y\otimes\dotsm\otimes Y}_{d-i}\in\mathcal{H}(\mathbb{C}^{2^{d}})\\
 T_{2i} &:= \underbrace{I\otimes\dotsm\otimes I}_{i-1}\otimes Z\otimes \underbrace{Y\otimes\dotsm\otimes Y}_{d-i}\in\mathcal{H}(\mathbb{C}^{2^{d}})
 \end{align*}
 for $i=1,\dotsc,d$.
-Show that $\emm{T_iT_j = -T_jT_i}$ for all $1\le i < j\le 2d$.
+Show that $\emm{T_i^2=I}$ for all $1\le i \le 2d$ and $\emm{T_iT_j = -T_jT_i}$ for all $1\le i < j\le 2d$.
 \item For any $v,\,w\in\mathbb{R}^{2d}$ satisfying $\|v\|=\|w\|=1$,
 \begin{align*}
 P_v&:=\sum_{i=1}^{2d} v_iT_i\in\mathcal{H}(\mathbb{C}^{2^{d}}),&
-Q_w&:=\sum_{i=1}^{2d} w_iT_i^t\in\mathcal{H}(\mathbb{C}^{2^{d}})
+Q_w&:=\sum_{i=1}^{2d} w_iT_i^T\in\mathcal{H}(\mathbb{C}^{2^{d}})
 \end{align*}
-where ${}^t$ stands for the transposition.
+where ${}^T$ stands for the transposition.
 Show that $\emm{P_v^2=Q_w^2=I}$.
 \item {[Advanced]} Let $\ket{\psi}:=\frac1{2^{d/2}}\sum_{i=1}^{2^{d}}\ket{i}\ket{i}\in\mathbb{C}^{2^{2d}}$. Show \emm{$\bra{\psi} P_v\otimes Q_w\ket{\psi} = \langle v,w\rangle$} for any $v,\,w\in\mathbb{R}^{2d}$ satisfying $\|v\|=\|w\|=1$.
 \end{enumerate}
