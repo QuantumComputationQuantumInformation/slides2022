@@ -677,6 +677,7 @@ The probability that $\Kett{\frac1{\sqrt{d}}U_{A_2\to A_1}}\Braa{\frac1{\sqrt{d}
 \end{frame}
 
 \begin{frame}{Orthogonal unitaries}
+\small
 When $d=2$, $I,\,X,\,Z,\,ZX$ are orthogonal unitaries in $\mathcal{L}(\mathbb{C}^2)$.
 
 \vspace{2em}
@@ -690,17 +691,21 @@ Let $\omega$ be a primitive $d$-th root of unity, i.e., $\omega=\exp\{i2\pi/d\}$
 
 \begin{align*}
 \emm{Z}&:=
+\sum_{j=0}^{d-1}\omega^j\ket{j}\bra{j},&
+\emm{X}&:=
+\sum_{j=0}^{d-1}\ket{j+1\bmod d}\bra{j}\\
+&=
 \begin{bmatrix}
 1&0&0\\
 0&\omega&0\\
 0&0&\omega^2
 \end{bmatrix},&
-\emm{X}&:=
+&=
 \begin{bmatrix}
 0&0&1\\
 1&0&0\\
 0&1&0
-\end{bmatrix},&
+\end{bmatrix}
 \end{align*}
 
 \begin{align*}
