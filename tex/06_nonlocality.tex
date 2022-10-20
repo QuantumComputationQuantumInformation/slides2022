@@ -54,7 +54,7 @@
 \author{Ryuhei Mori}
 %\institute{$\vcenter{\hbox{\includegraphics[width=30pt]{ELC_logo}}}$ Postdoctoral Fellow of ELC\\ $\vcenter{\hbox{\includegraphics[width=20pt]{titech_logo}}}$ Tokyo Institute of Technology}
 \institute{Tokyo Institute of Technology}
-\date{19, Oct., 2021}
+\date{}
 
 
 
@@ -344,7 +344,7 @@ n\in\mathbb{N}\\
 \end{align*}
 \end{frame}
 
-\begin{frame}{Binary measurements}
+\begin{frame}{Binary measurements and observable}
 \begin{lemma}
 \begin{align*}
 P_0\succeq 0,\, P_1\succeq 0,\, P_0+P_1=I
@@ -516,8 +516,13 @@ n\in\mathbb{N}\\
 %&(Q^{(y)})^2=I\qquad \forall y\in\{0,1\}\\
 \end{align*}
 
-\vspace{3em}
-\centering\Large
+\vspace{1.5em}
+\centering
+
+The dimension $2n^2$ is at most $|\mathcal{X}|+|\mathcal{Y}|$.
+
+\vspace{2em}
+\Large
 Tsirelson's bound
 \end{frame}
 
@@ -549,6 +554,35 @@ C\succeq 0\\
 \end{align*}
 \end{frame}
 
+\if0
+\begin{frame}{Tsirelson's bound (Alternative proof)}
+\small
+\begin{align*}
+\max\colon\qquad& \frac12\left(1 + \frac14\sum_{x,y} C_{x,y} (-1)^{x\wedge y}\right)\\
+\text{subject to}\colon\qquad&
+C\succeq 0\\
+&C_{z,z} = 1\qquad \forall z\in\mathcal{X}\cup\mathcal{Y}
+\end{align*}
+Let
+\begin{align*}
+T_{a, b} &=
+\begin{bmatrix}
+0&0&1&1\\
+0&0&1&-1\\
+1&1&0&0\\
+1&-1&0&0
+\end{bmatrix}
+\end{align*}
+Then, $T = X\otimes (X+Z)$.
+\begin{align*}
+\frac14\sum_{x,y} C_{x,y} (-1)^{x\wedge y} &= 
+\frac18\Tr(C T)
+ = \frac{\sqrt{2}}8\Tr\left(C \left(X\otimes \frac{X+Z}{\sqrt{2}}\right)\right)\\
+& \le
+\frac{\sqrt{2}}2\Tr\left(\frac{I\pm X}2\otimes\frac{I\pm\frac1{\sqrt{2}}X+\frac1{\sqrt{2}}Z}2 \left(X\otimes \frac{X+Z}{\sqrt{2}}\right)\right)\\
+\end{align*}
+\end{frame}
+\fi
 
 %\begin{frame}{No-signaling theory}
 %\end{frame}

@@ -17,9 +17,9 @@ https://www.youtube.com/playlist?list=PLmCVdZFx-DuebJ2Up_0tW5cAgJmsjECcY
 * 10/11 Composite system and entanglement [slide](/tex/03_joint.pdf)
 * 10/14 Spectral decomposition, purification and superdense coding [slide](/tex/04_mixed_state.pdf)
 * 10/18 Quantum teleportation [slide](/tex/05_teleportation.pdf)
+* 10/21 Nonlocality and Tsirelson's bound [slide](/tex/06_nonlocality.pdf)
 
 <!--
-* 10/19 Nonlocality and Tsirelson's bound [slide](/tex/06_nonlocality.pdf)
 * 10/22 Quantum state discrimination and Holevo--Helstrom theorem [slide](/tex/07_Trace.pdf)
 * 10/26 Quantum circuit [slide](/tex/08_Deutsch.pdf)
 * 11/2 Universality of quantum circuit [slide](/tex/09_Universality.pdf)
