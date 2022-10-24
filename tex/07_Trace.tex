@@ -198,6 +198,39 @@ From
 %\end{align*}
 %\end{frame}
 
+\begin{frame}{Trace norm}
+\footnotesize
+The trace distance is the sum of the singular values.
+Hence, it satisfies the \emm{unitary invariance}
+\begin{equation*}
+\|UAV\|_1=\|A\|_1
+\end{equation*}
+for any unitary matrices $U$ and $V$.
+
+For
+\begin{align*}
+A &= \sum_j \lambda_j \ket{\psi_j}\bra{\varphi_j}\qquad\text{(singular decomposition)}\\
+%U &= \sum_j \mathsf{e}^{i\theta_j} \ket{\varphi_j}\bra{\psi_j}\qquad\text{(singular decomposition)}
+U &= \sum_j \ket{\tau_j}\bra{\psi_j}\qquad\text{(singular decomposition)}
+\end{align*}
+\begin{align*}
+\left|\Tr(UA)\right|
+&= \left|\Tr\left(\sum_j \lambda_j \ket{\tau_j}\bra{\varphi_j}\right)\right|\\
+%&\le \sum_j \left|\Tr\left(\mathsf{e}^{i\theta_j}\lambda_j \ket{\varphi_j}\bra{\varphi_j}\right)\right|\\
+&\le \sum_j \lambda_j \left|\Tr\left(\ket{\tau_j}\bra{\varphi_j}\right)\right|
+= \sum_j \lambda_j |\braket{\varphi_j|\psi_j}|
+\le \sum_j \lambda_j = \|A\|_1
+\end{align*}
+By setting $\ket{\tau_j}=\ket{\varphi_j}$, the equalities are satisfied. We obtain \emm{$\max_U|\Tr(UA)| = \|A\|_1$}.
+Hence, the trace norm satisfies \emm{the triangle inequality}.
+\begin{align*}
+\|A+B\|_1 &= \max_U|\Tr(U(A+B))|
+\le \max_U(|\Tr(UA)| + |\Tr(UB)|)\\
+&\le \max_U|\Tr(UA)| + \max_U|\Tr(UB)|
+=\|A\|_1+\|B\|_1
+\end{align*}
+\end{frame}
+
 \begin{frame}{Unitary discrimination}
 Discrimination of \emm{unitary operators}:
 
@@ -208,6 +241,7 @@ Discrimination of \emm{unitary operators}:
 \item Output: $i\in\{0,1\}$ that indicates the given unitary $U_i$.
 \end{itemize}
 \end{frame}
+
 
 \begin{frame}{Unitary discrimination}
 If algorithm call the oracle $\mathcal{O}$ on a state $\ket{\psi}$, we get either of $U_0\ket{\psi}$ or $U_1\ket{\psi}$.
@@ -224,7 +258,29 @@ Let $\ket{\psi} = \sum_x \alpha_x \ket{\varphi_x}$.
 Then, $\bra{\psi}U_0^\dagger U_1\ket{\psi}= \sum_x |\alpha_x|^2 \mu_x$, which is a convex combination of $(\mu_x)_x$.
 Let $\emm{\theta_{\mathsf{cover}}}$ be the smallest angle that covers all eigenvalues $(\mu_x)_x$.
 Then, $\min_{\ket{\psi}} |\bra{\psi}U_0^\dagger U_1\ket{\psi}|= \cos(\frac{\emm{\theta_\mathsf{cover}}}2)$ if $\theta_\mathsf{cover}\le \pi$, and 0 otherwise.
+\end{frame}
 
+
+\begin{frame}{Diamond distance}
+\small
+The diamond distance $D$ is defined by
+\begin{align*}
+D(A,B)&:=
+\max_{\ket{\psi}}\|A\ket{\psi}\bra{\psi} A^\dagger - B\ket{\psi}\bra{\psi}B^\dagger\|_1.
+\end{align*}
+
+Then, $D$ is \emm{unitary invariant}, i.e., $D(UAV, UBV) = D(A, B)$ for any unitary matrices $U$ and $V$.
+
+\footnotesize
+\begin{align*}
+D(A,B)&=
+\max_{\ket{\psi}}\|A\ket{\psi}\bra{\psi} A^\dagger - B\ket{\psi}\bra{\psi}B^\dagger\|_1\\
+&=\max_{\ket{\psi}}\|A\ket{\psi}\bra{\psi} A^\dagger \emm{- C\ket{\psi}\bra{\psi}C^\dagger+C\ket{\psi}\bra{\psi}C^\dagger}+B\ket{\psi}\bra{\psi}B^\dagger\|_1\\
+&\le\max_{\ket{\psi}}(\|A\ket{\psi}\bra{\psi} A^\dagger - C\ket{\psi}\bra{\psi}C^\dagger\|_1+\|C\ket{\psi}\bra{\psi}C^\dagger+B\ket{\psi}\bra{\psi}B^\dagger\|_1)\\
+&\le\max_{\ket{\psi}}\|A\ket{\psi}\bra{\psi} A^\dagger - C\ket{\psi}\bra{\psi}C^\dagger\|_1+\max_{\ket{\psi}}\|C\ket{\psi}\bra{\psi}C^\dagger+B\ket{\psi}\bra{\psi}B^\dagger\|_1\\
+&=D(A,C)+D(C,B)
+\end{align*}
+The diamond distance $D$ satisfies the \emm{triangle inequality}.
 \end{frame}
 
 \begin{frame}{Assignment}
@@ -234,6 +290,8 @@ Then, $\min_{\ket{\psi}} |\bra{\psi}U_0^\dagger U_1\ket{\psi}|= \cos(\frac{\emm{
 \item Show a binary optimal measurement for the discrimination of $\ket{0}$ and $\ket{+}$ given with the uniform probability.
 \item Show the maximum probability of success for discriminating $I$ and $R_Z(\theta)$ given with the uniform probability.
 Show the input state $\ket{\psi}$ for the oracle as well.
+\item {[Advanced]} Show the maximum probability of success for discriminating 
+$R_{\mathbf{v}}(\theta)$ and $R_{\mathbf{w}}(\eta)$ given with the uniform probability.
 \end{enumerate}
 \end{frame}
 
