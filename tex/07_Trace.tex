@@ -56,7 +56,7 @@
 \author{Ryuhei Mori}
 %\institute{$\vcenter{\hbox{\includegraphics[width=30pt]{ELC_logo}}}$ Postdoctoral Fellow of ELC\\ $\vcenter{\hbox{\includegraphics[width=20pt]{titech_logo}}}$ Tokyo Institute of Technology}
 \institute{Tokyo Institute of Technology}
-\date{22, Oct., 2021}
+\date{}
 
 
 
@@ -70,10 +70,16 @@
 \begin{frame}{Discrimination of probability distributions}
 \emm{Discrimination} of probability distributions:
 
+\vspace{1em}
+\begin{itemize}
+\item $p_0,\,p_1$: Known probability distributions on a finite set $\mathcal{X}$.
+\item $\lambda\in[0,1]$: A probability of choosing the probability distributions.
+\end{itemize}
+
 \vspace{2em}
 \begin{itemize}
 \setlength{\itemsep}{2em}
-\item Input: $x\in\mathcal{X}$ drawn from probability dstribution $p_0$ with probability $\lambda$, and from $p_1$ with probability $1-\lambda$.
+\item Input: $x\in\mathcal{X}$ drawn from $p_0$ with probability $\lambda$, and from $p_1$ with probability $1-\lambda$.
 \item Output: $i\in\{0,1\}$ that indicates the probability distribution $p_i$.
 \end{itemize}
 \end{frame}
@@ -105,6 +111,12 @@ On the other hand, the expected point is $p_\mathsf{succ} - p_\mathsf{fail} = 2 
 
 \begin{frame}{Discrimination of quantum states}
 Discrimination of \emm{quantum} states:
+
+\vspace{1em}
+\begin{itemize}
+\item $\rho_0,\,\rho_1$: Known quantum states.
+\item $\lambda\in[0,1]$: A probability of choosing the quantum states.
+\end{itemize}
 
 \vspace{2em}
 \begin{itemize}
@@ -200,7 +212,7 @@ From
 
 \begin{frame}{Trace norm}
 \footnotesize
-The trace distance is the sum of the singular values.
+The trace norm is the sum of the singular values.
 Hence, it satisfies the \emm{unitary invariance}
 \begin{equation*}
 \|UAV\|_1=\|A\|_1
@@ -218,7 +230,7 @@ U &= \sum_j \ket{\tau_j}\bra{\psi_j}\qquad\text{(singular decomposition)}
 &= \left|\Tr\left(\sum_j \lambda_j \ket{\tau_j}\bra{\varphi_j}\right)\right|\\
 %&\le \sum_j \left|\Tr\left(\mathsf{e}^{i\theta_j}\lambda_j \ket{\varphi_j}\bra{\varphi_j}\right)\right|\\
 &\le \sum_j \lambda_j \left|\Tr\left(\ket{\tau_j}\bra{\varphi_j}\right)\right|
-= \sum_j \lambda_j |\braket{\varphi_j|\psi_j}|
+= \sum_j \lambda_j |\braket{\varphi_j|\tau_j}|
 \le \sum_j \lambda_j = \|A\|_1
 \end{align*}
 By setting $\ket{\tau_j}=\ket{\varphi_j}$, the equalities are satisfied. We obtain \emm{$\max_U|\Tr(UA)| = \|A\|_1$}.
@@ -261,7 +273,7 @@ Then, $\min_{\ket{\psi}} |\bra{\psi}U_0^\dagger U_1\ket{\psi}|= \cos(\frac{\emm{
 \end{frame}
 
 
-\begin{frame}{Diamond distance}
+\begin{frame}{The diamond distance}
 \small
 The diamond distance $D$ is defined by
 \begin{align*}
@@ -275,9 +287,9 @@ Then, $D$ is \emm{unitary invariant}, i.e., $D(UAV, UBV) = D(A, B)$ for any unit
 \begin{align*}
 D(A,B)&=
 \max_{\ket{\psi}}\|A\ket{\psi}\bra{\psi} A^\dagger - B\ket{\psi}\bra{\psi}B^\dagger\|_1\\
-&=\max_{\ket{\psi}}\|A\ket{\psi}\bra{\psi} A^\dagger \emm{- C\ket{\psi}\bra{\psi}C^\dagger+C\ket{\psi}\bra{\psi}C^\dagger}+B\ket{\psi}\bra{\psi}B^\dagger\|_1\\
-&\le\max_{\ket{\psi}}(\|A\ket{\psi}\bra{\psi} A^\dagger - C\ket{\psi}\bra{\psi}C^\dagger\|_1+\|C\ket{\psi}\bra{\psi}C^\dagger+B\ket{\psi}\bra{\psi}B^\dagger\|_1)\\
-&\le\max_{\ket{\psi}}\|A\ket{\psi}\bra{\psi} A^\dagger - C\ket{\psi}\bra{\psi}C^\dagger\|_1+\max_{\ket{\psi}}\|C\ket{\psi}\bra{\psi}C^\dagger+B\ket{\psi}\bra{\psi}B^\dagger\|_1\\
+&=\max_{\ket{\psi}}\|A\ket{\psi}\bra{\psi} A^\dagger \emm{- C\ket{\psi}\bra{\psi}C^\dagger+C\ket{\psi}\bra{\psi}C^\dagger}-B\ket{\psi}\bra{\psi}B^\dagger\|_1\\
+&\le\max_{\ket{\psi}}(\|A\ket{\psi}\bra{\psi} A^\dagger - C\ket{\psi}\bra{\psi}C^\dagger\|_1+\|C\ket{\psi}\bra{\psi}C^\dagger-B\ket{\psi}\bra{\psi}B^\dagger\|_1)\\
+&\le\max_{\ket{\psi}}\|A\ket{\psi}\bra{\psi} A^\dagger - C\ket{\psi}\bra{\psi}C^\dagger\|_1+\max_{\ket{\psi}}\|C\ket{\psi}\bra{\psi}C^\dagger-B\ket{\psi}\bra{\psi}B^\dagger\|_1\\
 &=D(A,C)+D(C,B)
 \end{align*}
 The diamond distance $D$ satisfies the \emm{triangle inequality}.
