@@ -56,7 +56,7 @@
 \author{Ryuhei Mori}
 %\institute{$\vcenter{\hbox{\includegraphics[width=30pt]{ELC_logo}}}$ Postdoctoral Fellow of ELC\\ $\vcenter{\hbox{\includegraphics[width=20pt]{titech_logo}}}$ Tokyo Institute of Technology}
 \institute{Tokyo Institute of Technology}
-\date{26, Oct., 2021}
+\date{}
 
 
 
@@ -183,7 +183,7 @@ In fact, $s(n) = \frac{2^n}{n}(1+o(1))$.
 \begin{lemma}
 For any function $f\colon \{0,1\}^n\to\{0,1\}$,
 %With sufficiently large number of working qubits (ancilla),
-there is a quantum circuit on $n+1+w$ qubits which consists of \emm{$X$}, \emm{CNOT} and \emm{Toffoli} gates for $U$ satisfying
+there is a quantum circuit on $n+1+w$ qubits which consists of \emm{$X$}, \emm{$\mathsf{CNOT}$} and \emm{$\mathsf{Toffoli}$} gates for $U$ satisfying
 \begin{equation*}
 U\ket{x}\ket{y}\ket{0}^{\otimes w} = \ket{x}\ket{y\oplus f(x)}\ket{0}^{\otimes w}
 \end{equation*}
@@ -200,7 +200,7 @@ Translate a Boolean circuit to a quantum circuit.
 \begin{theorem}[Universality of finite gate set]
 For any unitary matrix $U\in \mathcal{L}(\mathbb{C}^{2^n})$ and $\emm{\epsilon} >0$,
 there is a quantum circuit with \emm{$X,\,Y,\,Z,\,H,\,S,\,\mathsf{CNOT},\,\mathsf{Toffoli}$} gates computing $\widetilde{U}$
-satisfying $\|U-\widetilde{U}\|<\emm{\epsilon}$.
+satisfying $D(U,\widetilde{U})<\emm{\epsilon}$.
 \end{theorem}
 \begin{proof}
 In the next lecture.
