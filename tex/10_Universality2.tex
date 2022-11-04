@@ -57,7 +57,7 @@
 \author{Ryuhei Mori}
 %\institute{$\vcenter{\hbox{\includegraphics[width=30pt]{ELC_logo}}}$ Postdoctoral Fellow of ELC\\ $\vcenter{\hbox{\includegraphics[width=20pt]{titech_logo}}}$ Tokyo Institute of Technology}
 \institute{Tokyo Institute of Technology}
-\date{5, Nov., 2021}
+\date{}
 
 
 
@@ -73,7 +73,7 @@
 \begin{theorem}[Universality of finite gate set]
 For any unitary matrix $U\in L(\mathbb{C}^{2^n})$ and $\emm{\epsilon} >0$,
 there is a quantum circuit with \emm{$X,\,Y,\,Z,\,H,\,S,\,T,\,\mathsf{CNOT}$} gates computing $\widetilde{U}$
-satisfying $\|U-\widetilde{U}\|<\emm{\epsilon}$.
+satisfying $D(U,\widetilde{U})<\emm{\epsilon}$.
 \end{theorem}
 \begin{proof}
 \begin{enumerate}
@@ -335,7 +335,7 @@ Any controlled-unitary gate can be decomposed to a product of \emm{CNOT and arbi
 \begin{theorem}[Universality of finite gate set]
 For any unitary matrix $U\in L(\mathbb{C}^{2^n})$ and $\emm{\epsilon} >0$,
 there is a quantum circuit with \emm{$X,\,Y,\,Z,\,H,\,S,\,T,\,\mathsf{CNOT}$} gates computing $\widetilde{U}$
-satisfying $\|U-\widetilde{U}\|<\emm{\epsilon}$.
+satisfying $D(U,\widetilde{U})<\emm{\epsilon}$.
 \end{theorem}
 \begin{proof}
 \begin{enumerate}
@@ -358,14 +358,16 @@ Any single-qubit gate can be approximated by $X,\,Y,\,Z,\,H,\,S$ and $T$.
 %\|A\| := \max_{\ket{\psi}\in\mathbb{C}^n\colon \braket{\psi|\psi}=1}\sqrt{\bra{\psi}A^\dagger A\ket{\psi}}
 %\end{align*}
 %$\|A\|$ is the largest singular value of $A$.
-Assume that this theorem holds. For $A\in L(\mathbb{C}^d)$, Let $\|A\|$ be the \emm{spectral norm}, which satisfies  $\|UAV\| = \|A\|$ for any unitary matrices $U$ and $V$.
-Assume $\|U_i-V_i\|\le\epsilon$ for $i=1,\dotsc,m$.
+
+\vspace{2em}
+Assume that this theorem holds.
+% For $A\in L(\mathbb{C}^d)$, Let $\|A\|$ be the \emm{spectral norm}, which satisfies  $\|UAV\| = \|A\|$ for any unitary matrices $U$ and $V$.
+Assume $D(U_i,V_i)\le\epsilon$ for $i=1,\dotsc,m$.
 \begin{align*}
-&\|U_mU_{m-1}\dotsm U_1 - V_mV_{m-1}\dotsm V_1\|\\
-&=\left\|\sum_{i=1}^{m} (U_m\dotsm U_i V_{i-1}\dotsm V_1  - U_m\dotsm U_{i+1}V_{i}\dotsm V_1)\right\|\\
-&\le\sum_{i=1}^{m} \left\|U_m\dotsm U_i V_{i-1}\dotsm V_1  - U_m\dotsm U_{i+1}V_{i}\dotsm V_1\right\|\\
-&=\sum_{i=1}^{m} \left\|U_m\dotsm U_{i+1}(U_i-V_i)V_{i-1}\dotsm V_1\right\|
-=\sum_{i=1}^{m} \left\|U_i-V_i\right\|\le m\epsilon.
+&D(U_mU_{m-1}\dotsm U_1, V_mV_{m-1}\dotsm V_1)\\
+&\le\sum_{i=1}^{m} D\left(U_m\dotsm U_i V_{i-1}\dotsm V_1,  U_m\dotsm U_{i+1}V_{i}\dotsm V_1\right)\quad\text{\emm{(triangle inequality)}}\\
+&=\sum_{i=1}^{m} D\left(U_i, V_i\right)\quad\text{\emm{(unitary invariance)}}\\
+&\le m\epsilon.
 \end{align*}
 \end{frame}
 
@@ -430,6 +432,14 @@ R_Z(\pi/4) R_X(\pi/4) &=
 where $\eta$ satisfying $\cos(\eta/2) = \cos^2 (\pi/8)$ and $\widehat{n}$ is a unit vector along with $(\cos\frac{\pi}8,\sin\frac{\pi}8,\cos\frac{\pi}8)$.
 Here, $\eta$ is an \emm{irrational multiple of $\pi$}.
 $HR_{\widehat{n}}(\eta)H =R_{\widehat{m}}(\eta)$ where $\widehat{m}$ is a unit vector along with $(\cos\frac{\pi}8,-\sin\frac{\pi}8,\cos\frac{\pi}8)$.
+\begin{align*}
+R_X(\pi/4) R_Z(-\pi/4) &=
+\left[ \cos\frac{\pi}8I - i\sin\frac{\pi}8 X\right]
+\left[ \cos\frac{\pi}8I + i\sin\frac{\pi}8 Z\right]\\
+&= \cos^2\frac{\pi}8I - i\sin\frac{\pi}8\left[\cos\frac{\pi}8(X-Z)+\sin\frac{\pi}8 Y\right]\\
+&=: \cos\frac{\eta}2I - i\sin\frac{\eta}2\left(n_x X + n_Y Y + n_Z Z\right)\\
+&= R_{\widehat{n}}(\eta)
+\end{align*}
 
 \vspace{1em}
 For any $U\in\mathsf{SU}(2)$, there exists $\beta,\gamma,\delta\in[0,2\pi)$ such that
@@ -440,7 +450,7 @@ $U=R_{\widehat{n}}(\beta) R_{\widehat{m}}(\gamma) R_{\widehat{n}}(\delta)$.
 \begin{theorem}[Universality of finite gate set]
 For any unitary matrix $U\in L(\mathbb{C}^{2^n})$ and $\emm{\epsilon} >0$,
 there is a quantum circuit with \emm{$X,\,Y,\,Z,\,H,\,S,\,T,\,\mathsf{CNOT}$} gates computing $\widetilde{U}$
-satisfying $\|U-\widetilde{U}\|<\emm{\epsilon}$.
+satisfying $D(U,\widetilde{U})<\emm{\epsilon}$.
 \end{theorem}
 \begin{proof}
 \begin{enumerate}
