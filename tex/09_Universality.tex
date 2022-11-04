@@ -56,7 +56,7 @@
 \author{Ryuhei Mori}
 %\institute{$\vcenter{\hbox{\includegraphics[width=30pt]{ELC_logo}}}$ Postdoctoral Fellow of ELC\\ $\vcenter{\hbox{\includegraphics[width=20pt]{titech_logo}}}$ Tokyo Institute of Technology}
 \institute{Tokyo Institute of Technology}
-\date{2, Nov., 2021}
+\date{}
 
 
 
@@ -94,6 +94,7 @@ $\emm{T}:=\begin{bmatrix}1&0\\0&\frac{1+i}{\sqrt{2}}\end{bmatrix}$ gate
 \end{itemize}
 \end{frame}
 
+\if0
 \begin{frame}{Spectral norm}
 For $A\in \mathcal{L}(\mathbb{C}^n, \mathbb{C}^m)$,
 \begin{align*}
@@ -142,13 +143,14 @@ If $\theta_\mathsf{cover}\le\pi$, $2\sin(\theta_\mathsf{cover}/4)\ge\sin(\theta_
 If $\theta_\mathsf{cover}>\pi$, $2\sin(\theta_\mathsf{cover}/4)\ge1$.
 Hence, \emm{$\|U_0-U_1\|\ge\beta$}.
 \end{frame}
+\fi
 
 
 \begin{frame}{Universality of a quantum circuit}
 \begin{theorem}[Universality of finite gate set]
 For any unitary matrix $U\in \mathcal{L}(\mathbb{C}^{2^n})$ and $\emm{\epsilon} >0$,
 there is a quantum circuit with \emm{$X,\,Y,\,Z,\,H,\,S,\,T,\,\mathsf{CNOT}$} gates computing $\widetilde{U}$
-satisfying $\|U-\widetilde{U}\|<\emm{\epsilon}$.
+satisfying $D(U,\widetilde{U})<\emm{\epsilon}$.
 \end{theorem}
 \begin{proof}
 \begin{enumerate}
@@ -284,7 +286,7 @@ Arbitrary $d\times d$ unitary matrix can be decomposed to a product of at most \
 \begin{theorem}[Universality of finite gate set]
 For any unitary matrix $U\in \mathcal{L}(\mathbb{C}^{2^n})$ and $\emm{\epsilon} >0$,
 there is a quantum circuit with \emm{$X,\,Y,\,Z,\,H,\,S,\,T,\,\mathsf{CNOT}$} gates computing $\widetilde{U}$
-satisfying $\|U-\widetilde{U}\|<\emm{\epsilon}$.
+satisfying $D(U,\widetilde{U})<\emm{\epsilon}$.
 \end{theorem}
 \begin{proof}
 \begin{enumerate}
@@ -438,7 +440,7 @@ Let $x = \mathtt{00\emm{1}01},\, y = \mathtt{11\emm{0}00}$.
 \begin{theorem}[Universality of finite gate set]
 For any unitary matrix $U\in \mathcal{L}(\mathbb{C}^{2^n})$ and $\emm{\epsilon} >0$,
 there is a quantum circuit with \emm{$X,\,Y,\,Z,\,H,\,S,\,T,\,\mathsf{CNOT}$} gates computing $\widetilde{U}$
-satisfying $\|U-\widetilde{U}\|<\emm{\epsilon}$.
+satisfying $D(U,\widetilde{U})<\emm{\epsilon}$.
 \end{theorem}
 \begin{proof}
 \begin{enumerate}
