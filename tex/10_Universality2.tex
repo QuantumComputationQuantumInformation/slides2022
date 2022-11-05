@@ -17,6 +17,7 @@
 \usetikzlibrary{datavisualization.formats.functions}
 \usepackage{pgfplotstable}
 \usepgfplotslibrary{patchplots}
+\usepackage{blochsphere}
 
 \setbeamercovered{transparent}
 
@@ -246,7 +247,7 @@ Any controlled-unitary gate can be decomposed to a product of \emm{CNOT and arbi
 \begin{frame}{Group commutator and controlled-unitary}
 \small
 \begin{theorem}
-For any $U\in\emm{\mathsf{SU}(2)}$, controlled-$U$ gate with $n$ controlled qubits can be realized by $O(n^2)$ CNOT and arbitrary single-qubit gates without ancillas (working qubits).
+For any $U\in\emm{\mathsf{SU}(2)}$, controlled-$U$ gate with $n$ controlled qubits can be realized by $O(\emm{n^2})$ CNOT and arbitrary single-qubit gates without ancillas (working qubits).
 \end{theorem}
 \begin{proof}
 Induction on $n$.
@@ -314,7 +315,7 @@ For any $U\in\mathsf{U}(2)$, there exists $V\in\mathsf{SU}(2)$ and $\alpha\in\ma
 & \gate{V} & \qw & \qw
 }
 \]
-$A_n = S_n + A_{n-1} = O(n^3)$
+$A_n = S_n + A_{n-1} = O(\emm{n^3})$
 \end{frame}
 
 \begin{frame}{Controlled-unitary}
@@ -360,7 +361,9 @@ Any single-qubit gate can be approximated by $X,\,Y,\,Z,\,H,\,S$ and $T$.
 %$\|A\|$ is the largest singular value of $A$.
 
 \vspace{2em}
-Assume that this theorem holds.
+This theorem shows the universality of the gate set with $\mathsf{CNOT}$.
+%
+%Assume that this theorem holds.
 % For $A\in L(\mathbb{C}^d)$, Let $\|A\|$ be the \emm{spectral norm}, which satisfies  $\|UAV\| = \|A\|$ for any unitary matrices $U$ and $V$.
 Assume $D(U_i,V_i)\le\epsilon$ for $i=1,\dotsc,m$.
 \begin{align*}
@@ -399,6 +402,7 @@ Assume $D(U_i,V_i)\le\epsilon$ for $i=1,\dotsc,m$.
 \end{tikzpicture}
 \end{frame}
 
+\if0
 \begin{frame}{Special unitary group and rotation}
 \scriptsize
 \begin{align*}
@@ -417,6 +421,7 @@ For a real unit vector $\hat{n}=[n_X\ n_Y\ n_Z]$, let
 For any $U\in\mathsf{SU}(2)$, there exist $\theta\in[0,2\pi)$ and a real unit three-dimensional vector $\hat{n}$ such that
 $U=\emm{R_{\hat{n}}(\theta)}$.
 \end{frame}
+\fi
 
 \begin{frame}{Universality of $X,Y,Z,H,S,\emm{T}$}
 $T\cong R_Z(\pi/4)$.
@@ -432,18 +437,44 @@ R_Z(\pi/4) R_X(\pi/4) &=
 where $\eta$ satisfying $\cos(\eta/2) = \cos^2 (\pi/8)$ and $\widehat{n}$ is a unit vector along with $(\cos\frac{\pi}8,\sin\frac{\pi}8,\cos\frac{\pi}8)$.
 Here, $\eta$ is an \emm{irrational multiple of $\pi$}.
 $HR_{\widehat{n}}(\eta)H =R_{\widehat{m}}(\eta)$ where $\widehat{m}$ is a unit vector along with $(\cos\frac{\pi}8,-\sin\frac{\pi}8,\cos\frac{\pi}8)$.
-\begin{align*}
-R_X(\pi/4) R_Z(-\pi/4) &=
-\left[ \cos\frac{\pi}8I - i\sin\frac{\pi}8 X\right]
-\left[ \cos\frac{\pi}8I + i\sin\frac{\pi}8 Z\right]\\
-&= \cos^2\frac{\pi}8I - i\sin\frac{\pi}8\left[\cos\frac{\pi}8(X-Z)+\sin\frac{\pi}8 Y\right]\\
-&=: \cos\frac{\eta}2I - i\sin\frac{\eta}2\left(n_x X + n_Y Y + n_Z Z\right)\\
-&= R_{\widehat{n}}(\eta)
-\end{align*}
 
 \vspace{1em}
-For any $U\in\mathsf{SU}(2)$, there exists $\beta,\gamma,\delta\in[0,2\pi)$ such that
-$U=R_{\widehat{n}}(\beta) R_{\widehat{m}}(\gamma) R_{\widehat{n}}(\delta)$.
+For any $U\in\mathsf{SU}(2)$, there exists $n\in\mathbb{Z}_{\ge 0}$ and $\alpha_1,\dotsc,\alpha_n\in[0,2\pi)$ such that
+$U=R_{\widehat{n}}(\alpha_1) R_{\widehat{m}}(\alpha_2)R_{\widehat{n}}(\alpha_3)\dotsm R_{\widehat{n}}(\alpha_n)$.
+\end{frame}
+
+\begin{frame}{Universality of two rotations 1/2}
+\centering
+\begin{blochsphere}[radius=3cm,opacity=0.7]
+ %\drawBallGrid[style={opacity=0.3}]{30}{1000}
+\foreach \i in {1,...,15}{
+  \pgfmathtruncatemacro{\y}{100 * (\i - 8)/ 8}
+  \drawSmallCircle[style={opacity=0.7}]{0}{0}{\y}
+  \drawSmallCircle[]{30}{0}{\y}
+  \drawAxis[style={draw=red,opacity=1.0},scale=1.4]{0}{0}
+  \drawAxis[style={draw=red,opacity=1.0},scale=1.4]{30}{0}
+}
+\end{blochsphere}
+\end{frame}
+
+\begin{frame}{Universality of two rotations 2/2}
+\begin{theorem}
+For any $U\in\mathsf{SU}(2)$, there exists $n\in\mathbb{Z}_{\ge 0}$ and $\alpha_1,\dotsc,\alpha_n\in[0,2\pi)$ such that
+$U=R_{\widehat{n}}(\alpha_1) R_{\widehat{m}}(\alpha_2)R_{\widehat{n}}(\alpha_3)\dotsm R_{\widehat{n}}(\alpha_n)$.
+\end{theorem}
+\begin{proof}
+Let $\ket{\psi}$ and $\ket{\psi^\perp}$ be the eigenvectors of $R_{\widehat{n}}(\theta)$.
+
+\vspace{1em}
+Let $\ket{\varphi}:=U\ket{\psi}$, $\ket{\varphi^\perp}:=U\ket{\psi^\perp}$.
+
+\vspace{2em}
+There exists $n\in\mathbb{Z}_{\ge 0}$ and $\theta_0,\theta_1,\alpha_1,\dotsc,\alpha_n\in[0,2\pi)$ such that
+\begin{align*}
+\ket{\varphi}&=\emm{e^{i\theta_0}}R_{\widehat{n}}(\alpha_1) R_{\widehat{m}}(\alpha_2)R_{\widehat{n}}(\alpha_3)\dotsm R_{\widehat{m}}(\alpha_{n-1}) \emm{R_{\widehat{n}}(\alpha_n)}\ket{\psi}\\
+\ket{\varphi^\perp}&=\emm{e^{i\theta_1}}R_{\widehat{n}}(\alpha_1) R_{\widehat{m}}(\alpha_2)R_{\widehat{n}}(\alpha_3)\dotsm R_{\widehat{m}}(\alpha_{n-1}) \emm{R_{\widehat{n}}(\alpha_n)}\ket{\psi^\perp}.
+\end{align*}
+\end{proof}
 \end{frame}
 
 \begin{frame}{Universality of a quantum circuit}
@@ -463,19 +494,41 @@ satisfying $D(U,\widetilde{U})<\emm{\epsilon}$.
 \end{proof}
 \end{frame}
 
+\if0
+\begin{tikzpicture}
+  \shade[ball color = gray!40, opacity = 0.4] (0,0) circle (2cm);
+  \draw (0,0) circle (2cm);
+  \foreach \i in {1,...,4} {
+    \pgfmathtruncatemacro{\y}{2 * \i / 5};
+    \pgfmathtruncatemacro{\r}{sqrt(2 - \y*\y)};
+    \draw (-\r,\y) arc (180:360:2 and 0.6);
+    \draw[dashed] (2,\y) arc (0:180:2 and 0.6);
+    \draw (-2,-\y) arc (180:360:2 and 0.6);
+    \draw[dashed] (2,-\y) arc (0:180:2 and 0.6);
+    \fill[fill=black] (0,0) circle (1pt);
+  }
+\end{tikzpicture}
+\fi
+
+
 \begin{frame}{Solovay--Kitaev theorem}
 \begin{theorem}
 Assume $\{U_1,\dotsc,U_k\}$ generates a dense subset of $\mathsf{SU}(2)$.
-Then, any $U\in\mathsf{SU}(2)$ can be approxmiated with error $\epsilon$ by $\emm{[\log (1/\epsilon)]^c}$ multiplications of $\{U_1,\dotsc,U_k\}$.
+Then, any $U\in\mathsf{SU}(2)$ can be approxmiated with error $\epsilon$ by $\emm{[\log (1/\epsilon)]^c}$ multiplications of $\{U_1,\dotsc,U_k\}$
+for some constant $c$.
 \end{theorem}
 \end{frame}
 
 \begin{frame}{Assignments}
 \begin{enumerate}
-\setlength{\itemsep}{1em}
-\item Prove that for any $U\in\mathsf{SU}(2)$, there exists $\beta,\gamma,\delta\in[0,2\pi)$ such that
-$U=R_Z(\beta)R_Y(\gamma)R_Z(\delta)$ or
-$U=-R_Z(\beta)R_Y(\gamma)R_Z(\delta)$.
+\setlength{\itemsep}{2em}
+\item 
+Show a quantum circuit for controlled-$\begin{bmatrix} 1 & 0\\ 0 & e^{i\theta}\end{bmatrix}$ gate with \emm{two} controlled qubits
+using the $\mathsf{CNOT}$ gates and arbitrary single-qubit gates.
+
+\item {[Advanced]}
+Show a quantum circuit for controlled-$\begin{bmatrix} 1 & 0\\ 0 & -1\end{bmatrix}$ gate with \emm{two} controlled qubits
+using \emm{six} $\mathsf{CNOT}$ gates and \emm{seven} $T$ and $T^\dagger$ gates.
 \end{enumerate}
 \end{frame}
 
