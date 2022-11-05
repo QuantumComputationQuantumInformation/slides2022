@@ -484,6 +484,28 @@ Since $U\in\mathsf{SU}(2)$, $\theta$ must be 0 or $\pi$.
 \end{proof}
 \end{frame}
 
+\begin{frame}{Matrix decomposition}
+\small
+\begin{corollary}
+For any $U\in\mathsf{U}(2)$, there exists $\alpha,\beta,\gamma,\delta\in(0,2\pi)$ such that
+$U=e^{i\alpha}R_Z(\beta)R_Y(\gamma)R_Z(\delta)$.
+\end{corollary}
+\begin{proof}
+\begin{center}
+\begin{blochsphere}[radius=2cm,opacity=0.7]
+ %\drawBallGrid[style={opacity=0.3}]{30}{1000}
+\foreach \i in {1,...,15}{
+  \pgfmathtruncatemacro{\y}{100 * (\i - 8)/ 8}
+  \drawSmallCircle[style={opacity=0.7}]{0}{0}{\y}
+  \drawSmallCircle[style={opacity=0.7}]{89.999}{0}{\y}
+  \drawAxis[style={draw=red,opacity=1.0},scale=1.4]{0}{0}
+  \drawAxis[style={draw=red,opacity=1.0},scale=1.4]{90}{0}
+}
+\end{blochsphere}
+\end{center}
+\end{proof}
+\end{frame}
+
 \begin{frame}{Universality of a quantum circuit}
 \begin{theorem}[Universality of finite gate set]
 For any unitary matrix $U\in L(\mathbb{C}^{2^n})$ and $\emm{\epsilon} >0$,
