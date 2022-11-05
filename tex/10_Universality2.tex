@@ -438,9 +438,9 @@ where $\eta$ satisfying $\cos(\eta/2) = \cos^2 (\pi/8)$ and $\widehat{n}$ is a u
 Here, $\eta$ is an \emm{irrational multiple of $\pi$}.
 $HR_{\widehat{n}}(\eta)H =R_{\widehat{m}}(\eta)$ where $\widehat{m}$ is a unit vector along with $(\cos\frac{\pi}8,-\sin\frac{\pi}8,\cos\frac{\pi}8)$.
 
-\vspace{1em}
-For any $U\in\mathsf{SU}(2)$, there exists $n\in\mathbb{Z}_{\ge 0}$ and $\alpha_1,\dotsc,\alpha_n\in[0,2\pi)$ such that
-$U=R_{\widehat{n}}(\alpha_1) R_{\widehat{m}}(\alpha_2)R_{\widehat{n}}(\alpha_3)\dotsm R_{\widehat{n}}(\alpha_n)$.
+%\vspace{1em}
+%For any $U\in\mathsf{SU}(2)$, there exists $n\in\mathbb{Z}_{\ge 0}$ and $\alpha_1,\dotsc,\alpha_n\in[0,2\pi)$ such that
+%$U=R_{\widehat{n}}(\alpha_1) R_{\widehat{m}}(\alpha_2)R_{\widehat{n}}(\alpha_3)\dotsm R_{\widehat{n}}(\alpha_n)$.
 \end{frame}
 
 \begin{frame}{Universality of two rotations 1/2}
@@ -458,9 +458,10 @@ $U=R_{\widehat{n}}(\alpha_1) R_{\widehat{m}}(\alpha_2)R_{\widehat{n}}(\alpha_3)\
 \end{frame}
 
 \begin{frame}{Universality of two rotations 2/2}
+\small
 \begin{theorem}
-For any $U\in\mathsf{SU}(2)$, there exists $n\in\mathbb{Z}_{\ge 0}$ and $\alpha_1,\dotsc,\alpha_n\in[0,2\pi)$ such that
-$U=R_{\widehat{n}}(\alpha_1) R_{\widehat{m}}(\alpha_2)R_{\widehat{n}}(\alpha_3)\dotsm R_{\widehat{n}}(\alpha_n)$.
+For any $U\in\mathsf{SU}(2)$, there exists $n\in\mathbb{Z}_{\ge 0}$ and $\alpha_1,\dotsc,\alpha_n\in(0,2\pi)$ such that
+$R_{\widehat{n}}(\alpha_1) R_{\widehat{m}}(\alpha_2)R_{\widehat{n}}(\alpha_3)\dotsm R_{\widehat{n}}(\alpha_n)$ is equal to $U$ or $-U$.
 \end{theorem}
 \begin{proof}
 Let $\ket{\psi}$ and $\ket{\psi^\perp}$ be the eigenvectors of $R_{\widehat{n}}(\theta)$.
@@ -468,12 +469,18 @@ Let $\ket{\psi}$ and $\ket{\psi^\perp}$ be the eigenvectors of $R_{\widehat{n}}(
 \vspace{1em}
 Let $\ket{\varphi}:=U\ket{\psi}$, $\ket{\varphi^\perp}:=U\ket{\psi^\perp}$.
 
-\vspace{2em}
-There exists $n\in\mathbb{Z}_{\ge 0}$ and $\theta_0,\theta_1,\alpha_1,\dotsc,\alpha_n\in[0,2\pi)$ such that
+\vspace{1em}
+There exists $n\in\mathbb{Z}_{\ge 0}$ and $\theta_0,\theta_1,\alpha_1,\dotsc,\alpha_{n}\in(0,2\pi)$  such that
 \begin{align*}
-\ket{\varphi}&=\emm{e^{i\theta_0}}R_{\widehat{n}}(\alpha_1) R_{\widehat{m}}(\alpha_2)R_{\widehat{n}}(\alpha_3)\dotsm R_{\widehat{m}}(\alpha_{n-1}) \emm{R_{\widehat{n}}(\alpha_n)}\ket{\psi}\\
-\ket{\varphi^\perp}&=\emm{e^{i\theta_1}}R_{\widehat{n}}(\alpha_1) R_{\widehat{m}}(\alpha_2)R_{\widehat{n}}(\alpha_3)\dotsm R_{\widehat{m}}(\alpha_{n-1}) \emm{R_{\widehat{n}}(\alpha_n)}\ket{\psi^\perp}.
+\ket{\varphi}&=\emm{e^{i\theta_0}}R_{\widehat{n}}(\alpha_1) R_{\widehat{m}}(\alpha_2)R_{\widehat{n}}(\alpha_3)\dotsm R_{\widehat{m}}(\alpha_{n-1})\ket{\psi}\\
+&=\emm{e^{i(\theta_0+\frac{\alpha_n}2)}}R_{\widehat{n}}(\alpha_1) R_{\widehat{m}}(\alpha_2)R_{\widehat{n}}(\alpha_3)\dotsm R_{\widehat{m}}(\alpha_{n-1}) \emm{R_{\widehat{n}}(\alpha_n)} \ket{\psi}\\
+\ket{\varphi^\perp}&=\emm{e^{i\theta_1}}R_{\widehat{n}}(\alpha_1) R_{\widehat{m}}(\alpha_2)R_{\widehat{n}}(\alpha_3)\dotsm R_{\widehat{m}}(\alpha_{n-1}) \ket{\psi^\perp}\\
+&=\emm{e^{i(\theta_1-\frac{\alpha_n}2)}}R_{\widehat{n}}(\alpha_1) R_{\widehat{m}}(\alpha_2)R_{\widehat{n}}(\alpha_3)\dotsm R_{\widehat{m}}(\alpha_{n-1}) \emm{R_{\widehat{n}}(\alpha_n)}\ket{\psi^\perp}.
 \end{align*}
+By choosing $\alpha_n = \theta_1-\theta_0$, then $\theta_0+\frac{\alpha_n}2=\theta_1-\frac{\alpha_n}2$.
+Hence, $R_{\widehat{n}}(\alpha_1)\dotsm R_{\widehat{n}}(\alpha_n)$ maps $\ket{\psi}\mapsto e^{i\theta}\ket{\varphi}$,
+$\ket{\psi^\perp}\mapsto e^{i\theta}\ket{\varphi^\perp}$.
+Since $U\in\mathsf{SU}(2)$, $\theta$ must be 0 or $\pi$.
 \end{proof}
 \end{frame}
 
