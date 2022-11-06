@@ -352,7 +352,7 @@ satisfying $D(U,\widetilde{U})<\emm{\epsilon}$.
 
 \begin{frame}{Approximation of a single-qubit gate is sufficient}
 \begin{theorem}
-Any single-qubit gate can be approximated by $X,\,Y,\,Z,\,H,\,S$ and $T$.
+For any $U\in U(2)$ and $\epsilon>0$, there exists a single-qubit quantum circuit $V$ consisting of \emm{$X,\,Y,\,Z,\,H,\,S$ and $T$} gates such that $D(U, V)\le \epsilon$.
 \end{theorem}
 \small
 %For $A\in L(\mathbb{C}^n, \mathbb{C}^m)$,
@@ -671,14 +671,14 @@ $D(A,B)=\sqrt{1-\Tr(A^\dagger B)^2/4}$.
 \Tr\left(WVW^\dagger V^\dagger \widetilde{V}\widetilde{W}\widetilde{V}^\dagger\widetilde{W}^\dagger\right)
 &=
 \Tr\left(W^\dagger (V^\dagger \widetilde{V})\widetilde{W}\widetilde{V}^\dagger(\widetilde{W}^\dagger W)V\right)\\
-&=\Tr\left(W^\dagger (V^\dagger \widetilde{V})W(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) V^\dagger (\widetilde{W}^\dagger W) V\right)
+&=\Tr\left(W^\dagger (V^\dagger \widetilde{V})\emm{W}(\emm{W^\dagger} \widetilde{W})(\widetilde{V}^\dagger \emm{V}) \emm{V^\dagger} (\widetilde{W}^\dagger W) V\right)
 \end{align*}
-Let $V^\dagger \widetilde{V}= \cos\frac{\theta_V}2 I - i \sin\frac{\theta_V}2 A$, $W^\dagger \widetilde{W}= \cos\frac{\theta_W}2 I - i \sin\frac{\theta_W}2 B$. Then,
-\begin{align*}
-&\Tr\left(VW^\dagger (V^\dagger \widetilde{V})\widetilde{W}\widetilde{V}^\dagger(\widetilde{W}^\dagger W)\right)\\
-&=
-\Tr\left(W^\dagger (V^\dagger \widetilde{V})W(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) V^\dagger (\widetilde{W}^\dagger W) V\right)
-\end{align*}
+%Let $V^\dagger \widetilde{V}= \cos\frac{\theta_V}2 I - i \sin\frac{\theta_V}2 A$, $W^\dagger \widetilde{W}= \cos\frac{\theta_W}2 I - i \sin\frac{\theta_W}2 B$. Then,
+%\begin{align*}
+%&\Tr\left(VW^\dagger (V^\dagger \widetilde{V})\widetilde{W}\widetilde{V}^\dagger(\widetilde{W}^\dagger W)\right)\\
+%&=
+%\Tr\left(W^\dagger (V^\dagger \widetilde{V})W(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) V^\dagger (\widetilde{W}^\dagger W) V\right)
+%\end{align*}
 %\begin{align*}
 %&\Tr\left(VW^\dagger (V^\dagger \widetilde{V})\widetilde{W}\widetilde{V}^\dagger(\widetilde{W}^\dagger W)\right)
 %=\cos\frac{\theta_V}2\cos\frac{\theta_W}2 \Tr(VW^\dagger \widetilde{W}\widetilde{V}^\dagger)\\
@@ -686,11 +686,13 @@ Let $V^\dagger \widetilde{V}= \cos\frac{\theta_V}2 I - i \sin\frac{\theta_V}2 A$
 %+i\cos\frac{\theta_V}2\sin\frac{\theta_W}2 \Tr\left(VW^\dagger \widetilde{W}\widetilde{V}^\dagger B\right)\\
 %&+\sin\frac{\theta_V}2\sin\frac{\theta_W}2 \Tr\left(VW^\dagger A \widetilde{W}\widetilde{V}^\dagger B\right)
 %\end{align*}
+\let\qed\relax
 \end{proof}
 \end{frame}
 
 \begin{frame}{Proof 2/3}
 \scriptsize
+\begin{proof}
 Let
 \begin{align*}
 V^\dagger \widetilde{V}&= \cos\frac{\theta_V}2 I - i \sin\frac{\theta_V}2 A\\
@@ -698,8 +700,14 @@ W^\dagger \widetilde{W}&= \cos\frac{\theta_W}2 I - i \sin\frac{\theta_W}2 B\\
 V &= \cos\frac{\tau_V}2 I - i \sin\frac{\tau_V}2 C\\
 W &= \cos\frac{\tau_W}2 I - i \sin\frac{\tau_W}2 D
 \end{align*}
+
+\vspace{-2em}
 \begin{align*}
-&\frac12\Tr\left(W^\dagger (V^\dagger \widetilde{V})W(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) V^\dagger (\widetilde{W}^\dagger W) V\right)\\
+&\frac12\Tr\left(\emm{W^\dagger} (V^\dagger \widetilde{V})\emm{W}(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) \emm{V^\dagger} (\widetilde{W}^\dagger W) \emm{V}\right)\\
+%&\frac12\Tr\left(W^\dagger \emm{(V^\dagger \widetilde{V})}W\emm{(W^\dagger \widetilde{W})}\emm{(\widetilde{V}^\dagger V)} V^\dagger \emm{(\widetilde{W}^\dagger W)} V\right)\\
+%&\frac12\Tr\left(W^\dagger (V^\dagger \widetilde{V}) \widetilde{W}\widetilde{V}^\dagger \emm{(\widetilde{W}^\dagger W)} V\right)\\
+%&\ge
+%\cos\frac{\theta_V}2\cos\frac{\theta_W}2- \sin\frac{\theta_V}2\sin\frac{\theta_W}2\\
 &\ge
 \left(\cos^2\frac{\tau_V}2\cos^2\frac{\tau_W}2\right)
 \frac12\Tr\left((V^\dagger \widetilde{V})(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) (\widetilde{W}^\dagger W) \right)\\
@@ -719,6 +727,7 @@ W &= \cos\frac{\tau_W}2 I - i \sin\frac{\tau_W}2 D
 \frac12\Tr\left((V^\dagger \widetilde{V})(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) (\widetilde{W}^\dagger W) \right)- (1-(1-\delta^2)^2)(1-(1-\Delta^2)^2)\\
 &-((1+\delta)^4-1)((1+\Delta)^4-1)
 \end{align*}
+\end{proof}
 \end{frame}
 
 \begin{frame}{Proof 3/3}
@@ -726,7 +735,7 @@ W &= \cos\frac{\tau_W}2 I - i \sin\frac{\tau_W}2 D
 \begin{align*}
 &\frac12\Tr\left(W^\dagger (V^\dagger \widetilde{V})W(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) V^\dagger (\widetilde{W}^\dagger W) V\right)\\
 &\ge
-\emm{\frac12\Tr\left((V^\dagger \widetilde{V})(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) (\widetilde{W}^\dagger W) \right)}- (2\delta^2-\delta^4)(2\Delta^2-\Delta^4)\\
+\emm{\frac12\Tr\left((V^\dagger \widetilde{V})(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) (\widetilde{W}^\dagger W) \right)}- (1-(1-\delta^2)^2)(1-(1-\Delta^2)^2)\\
 &-((1+\delta)^4-1)((1+\Delta)^4-1)
 \end{align*}
 \begin{align*}
@@ -753,6 +762,7 @@ W &= \cos\frac{\tau_W}2 I - i \sin\frac{\tau_W}2 D
 \end{align*}
 \end{frame}
 
+\if0
 \begin{frame}{Proof 1/2}
 \small
 \begin{theorem}
@@ -804,6 +814,7 @@ Since $V$ and $V+\Delta_V$ are unitary,
 %$c_{\mathsf{approx}}\approx 8c_{\mathsf{GC}}$.
 $c_{\mathsf{B}}\approx 8$.
 \end{frame}
+\fi
 
 \begin{frame}{Assignments}
 \begin{enumerate}
