@@ -18,6 +18,7 @@
 \usepackage{pgfplotstable}
 \usepgfplotslibrary{patchplots}
 \usepackage{blochsphere}
+\usepackage{algpseudocode}
 
 \setbeamercovered{transparent}
 
@@ -487,7 +488,7 @@ Since $U\in\mathsf{SU}(2)$, $\theta$ must be 0 or $\pi$.
 \begin{frame}{Matrix decomposition}
 \small
 \begin{corollary}
-For any $U\in\mathsf{U}(2)$, there exists $\alpha,\beta,\gamma,\delta\in(0,2\pi)$ such that
+For any $U\in\mathsf{U}(2)$, there exists $\alpha,\beta,\gamma,\delta\in[0,2\pi)$ such that
 $U=e^{i\alpha}R_Z(\beta)R_Y(\gamma)R_Z(\delta)$.
 \end{corollary}
 \begin{proof}
@@ -546,6 +547,262 @@ Assume $\{U_1,\dotsc,U_k\}$ generates a dense subset of $\mathsf{SU}(2)$.
 Then, any $U\in\mathsf{SU}(2)$ can be approxmiated with error $\epsilon$ by $\emm{[\log (1/\epsilon)]^c}$ multiplications of $\{U_1,\dotsc,U_k\}$
 for some constant $c$.
 \end{theorem}
+\end{frame}
+
+\begin{frame}{Special unitary group and group commutator}
+\small
+\begin{theorem}
+For any $U\in\mathsf{SU}(2)$, there exist $V,\,W\in\mathsf{SU}(2)$ such that $U = VWV^\dagger W^\dagger$ for some $V,\,W$ satisfying $D(I,V)<c_{\mathsf{GC}}\sqrt{D(I,U)}$ and $D(I,W)<c_{\mathsf{GC}}\sqrt{D(I,U)}$
+for some constant $c_{\mathsf{GC}}>1/\sqrt{2}$.
+\end{theorem}
+\begin{proof}
+
+\scriptsize
+\vspace{-2em}
+\begin{align*}
+&R_Z(\theta)R_X(\theta)R_Z(\theta)^\dagger R_X(\theta)^\dagger
+= R_Z(\theta)R_X(\theta)R_Z(-\theta)R_X(-\theta)\\
+&= R_Z(\theta)R_X(\theta)R_Z(-\theta)R_X(-\theta)\\
+&= \left[\cos\frac{\theta}2 I - i\sin\frac{\theta}2 Z\right]
+\left[\cos\frac{\theta}2 I - i\sin\frac{\theta}2 X\right]
+\left[\cos\frac{\theta}2 I + i\sin\frac{\theta}2 Z\right]
+\left[\cos\frac{\theta}2 I + i\sin\frac{\theta}2 X\right]\\
+&= \left[\cos^4\frac{\theta}2+2\cos^2\frac{\theta}2\sin^2\frac{\theta}2-\sin^4\frac{\theta}2\right] I + \dotsb\\
+%&= \left[\cos^2\frac{\theta}2(\cos^2\frac{\theta}2+2\sin^2\frac{\theta}2)-\sin^4\frac{\theta}2\right] I + \dotsb\\
+&= \left[1-2\sin^4\frac{\theta}2\right] I + \dotsb
+=R_{\widehat{n}_\theta}(\emm{\varphi})
+%&= \left[\cos^2\frac{\theta}2 I - i\sin\frac{\theta}2\cos\frac{\theta}2(Z+X) - \sin^2\frac{\theta}2 ZX\right]\\
+%&\cdot \left[\cos^2\frac{\theta}2 I + i\sin\frac{\theta}2\cos\frac{\theta}2(Z+X) - \sin^2\frac{\theta}2 ZX\right]
+%&= \left[\cos^2\frac{\theta}2 I - \sin^2\frac{\theta}2 ZX\right]^2 - i\sin\frac{\theta}2\cos\frac{\theta}2(Z+X) \right]\\
+\end{align*}
+\emm{$\cos\frac{\varphi}2 = 1-2\sin^4\frac{\theta}2$}.
+%$\sin^2\frac{\varphi}2 = 4\sin^4\frac{\theta}2 - 4\sin^8\frac{\theta}2$.
+%$\sin\frac{\varphi}2 = 2\sin^2\frac{\theta}2\sqrt{1 - \sin^4\frac{\theta}2}$.
+For some $S\in \mathsf{U}(2)$ and $\varphi\in\mathbb{R}$, $U=SR_{\widehat{n}_\theta}(\varphi)S^\dagger$.
+For $V:= SR_Z(\theta)S^\dagger$ and $W:= SR_X(\theta)S^\dagger$,
+$U=VWV^\dagger W^\dagger$.
+\end{proof}
+\end{frame}
+
+\begin{frame}{Rotation matrix and distance}
+\begin{align*}
+D(I, R_{\widehat{n}}(\theta))
+&= \left|\sin\frac{\theta}2\right|
+%&= \left\|\begin{bmatrix}1-\mathsf{e}^{i\theta/2}&0\\0&1-\mathsf{e}^{-i\theta/2}\end{bmatrix}\right\|\\
+%&= \left|1-\mathsf{e}^{i\theta/2}\right|\\
+%&= 2\left|\sin\frac{\theta}4\right|
+\end{align*}
+For $U\in \mathsf{SU}(2)$, $V,\,W\in\mathsf{SU}(2)$ satisfying $U=VWV^\dagger W^\dagger$ in the construction
+\begin{equation*}
+D(I, U) = \left|\sin\frac{\varphi}2\right|
+= \sqrt{1-\cos^2\frac{\varphi}2}
+\approx 2 \sin^2\frac{\theta}2
+%\approx 8 \sin^2\frac{\theta}4
+= 2D(I, V)^2
+\end{equation*}
+With some constant $c_{\mathsf{GC}} > 1/\sqrt{2}$,
+$D(I-V)\le \emm{c_{\mathsf{GC}} \sqrt{D(I,U)}}$.
+\end{frame}
+
+
+\begin{frame}{Solovay--Kitaev algorithm}
+\begin{algorithmic}
+\Function{Solovay--Kitaev}{$U$, $n$}
+\If {$n=0$}
+  \State \Return Basic approximation to $U$
+\EndIf
+\State $U_{n-1} \gets$ \Call{Solovay--Kitaev}{$U$, $n-1$}
+\State $V, W \gets$ \Call{GC--Decompose}{$UU_{n-1}^\dagger$}
+\State $V_{n-1} \gets$ \Call{Solovay--Kitaev}{$V$, $n-1$}
+\State $W_{n-1} \gets$ \Call{Solovay--Kitaev}{$W$, $n-1$}
+\State \Return $V_{n-1}W_{n-1}V_{n-1}^\dagger W_{n-1}^\dagger U_{n-1}$.
+\EndFunction
+\end{algorithmic}
+
+\vspace{1em}
+\begin{algorithmic}
+\Function{GC--Decompose}{$\Delta$}
+\State \Return ($V$, $W$) satisfying $VWV^\dagger W^\dagger = \Delta$ and $D(I, V),\,D(I,W)\le c_{\mathsf{GC}}\sqrt{D(I,\Delta)}$.
+\EndFunction
+\end{algorithmic}
+\end{frame}
+
+\begin{frame}{Analysis}
+\small
+\begin{theorem}
+If \emm{$D(I , V),\, D(I , W)\le \delta$},
+$D(V,\widetilde{V}),\,D(W,\widetilde{W}) \le \Delta$
+\begin{equation*}
+D(VWV^\dagger W^\dagger , \widetilde{V}\widetilde{W}\widetilde{V}^\dagger\widetilde{W}^\dagger) \le c_{\mathsf{B}} \Delta(\delta + \Delta).
+\end{equation*}
+\end{theorem}
+From this (surprising) theorem for $\Delta=\epsilon_{n-1}$, $\delta=c_{\mathsf{GC}}\sqrt{\epsilon_{n-1}}$,
+for $c_{\mathsf{approx}} \approx c_B c_{\mathsf{GC}}$.
+\begin{align*}
+\ell_n &\le 5\ell_{n-1}\\
+\epsilon_n &\le c_{\mathsf{approx}} \epsilon_{n-1}^{3/2}
+\end{align*}
+Then,
+\begin{align*}
+\ell_n&\le 5^n \ell_0\\
+c_{\mathsf{approx}}^2\epsilon_n &\le c_{\mathsf{approx}}^3 \epsilon_{n-1}^{3/2}=(c_{\mathsf{approx}}^2\epsilon_{n-1})^{3/2} \\
+&\le (c_{\mathsf{approx}}^2\epsilon_{0})^{(3/2)^n}
+%\log (1/[c_{\mathsf{approx}}^2 \epsilon_n]) &\ge (3/2)\log (1/[c_{\mathsf{approx}}^2 \epsilon_{n-1}])\\
+%&\ge (3/2)^n\log (1/[c_{\mathsf{approx}}^2 \epsilon_{0}])\\
+%&\ge (\ell_n/\ell_0)^{\frac{\log (3/2)}{\log 5}}\log (1/\epsilon_{0})
+\end{align*}
+If $\epsilon_0 < 1 / c_{\mathsf{approx}}^2$, $\ell_n = O\left((\log (1/\epsilon))^{\emm{\frac{\log 5}{\log (3/2)}}}\right)$.
+\end{frame}
+
+\begin{frame}{Proof 1/3}
+\small
+\begin{theorem}
+If $D(I, V),\, D(I, W)\le \delta$,
+$D(V,\widetilde{V}),\,D(W,\widetilde{W}) \le \Delta$
+\begin{equation*}
+D(VWV^\dagger W^\dagger, \widetilde{V}\widetilde{W}\widetilde{V}^\dagger\widetilde{W}^\dagger) \le \emm{8\Delta^2 + 8\Delta\delta} + 4\Delta\delta^2 + 4\Delta^3 + \Delta^4.
+\end{equation*}
+\end{theorem}
+\begin{proof}
+For $A, B\in \mathsf{SU}(2)$,
+$D(A,B)=\sqrt{1-\Tr(A^\dagger B)^2/4}$.
+
+\begin{align*}
+\Tr\left(WVW^\dagger V^\dagger \widetilde{V}\widetilde{W}\widetilde{V}^\dagger\widetilde{W}^\dagger\right)
+&=
+\Tr\left(W^\dagger (V^\dagger \widetilde{V})\widetilde{W}\widetilde{V}^\dagger(\widetilde{W}^\dagger W)V\right)\\
+&=\Tr\left(W^\dagger (V^\dagger \widetilde{V})W(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) V^\dagger (\widetilde{W}^\dagger W) V\right)
+\end{align*}
+Let $V^\dagger \widetilde{V}= \cos\frac{\theta_V}2 I - i \sin\frac{\theta_V}2 A$, $W^\dagger \widetilde{W}= \cos\frac{\theta_W}2 I - i \sin\frac{\theta_W}2 B$. Then,
+\begin{align*}
+&\Tr\left(VW^\dagger (V^\dagger \widetilde{V})\widetilde{W}\widetilde{V}^\dagger(\widetilde{W}^\dagger W)\right)\\
+&=
+\Tr\left(W^\dagger (V^\dagger \widetilde{V})W(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) V^\dagger (\widetilde{W}^\dagger W) V\right)
+\end{align*}
+%\begin{align*}
+%&\Tr\left(VW^\dagger (V^\dagger \widetilde{V})\widetilde{W}\widetilde{V}^\dagger(\widetilde{W}^\dagger W)\right)
+%=\cos\frac{\theta_V}2\cos\frac{\theta_W}2 \Tr(VW^\dagger \widetilde{W}\widetilde{V}^\dagger)\\
+%&-i\sin\frac{\theta_V}2\cos\frac{\theta_W}2 \Tr\left(VW^\dagger A \widetilde{W}\widetilde{V}^\dagger\right)
+%+i\cos\frac{\theta_V}2\sin\frac{\theta_W}2 \Tr\left(VW^\dagger \widetilde{W}\widetilde{V}^\dagger B\right)\\
+%&+\sin\frac{\theta_V}2\sin\frac{\theta_W}2 \Tr\left(VW^\dagger A \widetilde{W}\widetilde{V}^\dagger B\right)
+%\end{align*}
+\end{proof}
+\end{frame}
+
+\begin{frame}{Proof 2/3}
+\scriptsize
+Let
+\begin{align*}
+V^\dagger \widetilde{V}&= \cos\frac{\theta_V}2 I - i \sin\frac{\theta_V}2 A\\
+W^\dagger \widetilde{W}&= \cos\frac{\theta_W}2 I - i \sin\frac{\theta_W}2 B\\
+V &= \cos\frac{\tau_V}2 I - i \sin\frac{\tau_V}2 C\\
+W &= \cos\frac{\tau_W}2 I - i \sin\frac{\tau_W}2 D
+\end{align*}
+\begin{align*}
+&\frac12\Tr\left(W^\dagger (V^\dagger \widetilde{V})W(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) V^\dagger (\widetilde{W}^\dagger W) V\right)\\
+&\ge
+\left(\cos^2\frac{\tau_V}2\cos^2\frac{\tau_W}2\right)
+\frac12\Tr\left((V^\dagger \widetilde{V})(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) (\widetilde{W}^\dagger W) \right)\\
+&+ \left(\cos^2\frac{\theta_V}2\cos^2\frac{\theta_W}2\right)-\left(\cos^2\frac{\tau_V}2\cos^2\frac{\tau_W}2\right)\left(\cos^2\frac{\theta_V}2\cos^2\frac{\theta_W}2\right)\\
+&-
+\left(
+\binom{4}{1} \delta 
++\binom{4}{2} \delta^2
++\binom{4}{3} \delta^3
++\binom{4}{4} \delta^4\right)
+\left(
+\binom{4}{1} \Delta 
++\binom{4}{2} \Delta^2
++\binom{4}{3} \Delta^3
++\binom{4}{4} \Delta^4\right)\\
+&\ge
+\frac12\Tr\left((V^\dagger \widetilde{V})(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) (\widetilde{W}^\dagger W) \right)- (1-(1-\delta^2)^2)(1-(1-\Delta^2)^2)\\
+&-((1+\delta)^4-1)((1+\Delta)^4-1)
+\end{align*}
+\end{frame}
+
+\begin{frame}{Proof 3/3}
+\scriptsize
+\begin{align*}
+&\frac12\Tr\left(W^\dagger (V^\dagger \widetilde{V})W(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) V^\dagger (\widetilde{W}^\dagger W) V\right)\\
+&\ge
+\emm{\frac12\Tr\left((V^\dagger \widetilde{V})(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) (\widetilde{W}^\dagger W) \right)}- (2\delta^2-\delta^4)(2\Delta^2-\Delta^4)\\
+&-((1+\delta)^4-1)((1+\Delta)^4-1)
+\end{align*}
+\begin{align*}
+&\emm{\frac12\Tr\left((V^\dagger \widetilde{V})(W^\dagger \widetilde{W})(\widetilde{V}^\dagger V) (\widetilde{W}^\dagger W)\right)}\\
+&= 
+\frac12\Tr\Biggl(
+\left[\cos\frac{\theta_V}2 I - i\sin\frac{\theta_V}2 A\right]
+\left[\cos\frac{\theta_W}2 I - i\sin\frac{\theta_W}2 B\right]\\
+&\cdot
+\left[\cos\frac{\theta_V}2 I + i\sin\frac{\theta_V}2 A\right]
+\left[\cos\frac{\theta_W}2 I + i\sin\frac{\theta_W}2 B\right]\Biggr)\\
+&=
+\cos^2\frac{\theta_V}2 \cos^2\frac{\theta_W}2 + 
+\sin^2\frac{\theta_V}2 \cos^2\frac{\theta_W}2 + 
+\cos^2\frac{\theta_V}2 \sin^2\frac{\theta_W}2 + 
+\sin^2\frac{\theta_V}2 \sin^2\frac{\theta_W}2 \frac12\Tr(ABAB)\\
+&\ge
+\cos^2\frac{\theta_V}2 \cos^2\frac{\theta_W}2 + 
+\sin^2\frac{\theta_V}2 \cos^2\frac{\theta_W}2 + 
+\cos^2\frac{\theta_V}2 \sin^2\frac{\theta_W}2 - 
+\sin^2\frac{\theta_V}2 \sin^2\frac{\theta_W}2\\
+&=1- 2\sin^2\frac{\theta_V}2 \sin^2\frac{\theta_W}2
+\ge 1-2\Delta^4
+\end{align*}
+\end{frame}
+
+\begin{frame}{Proof 1/2}
+\small
+\begin{theorem}
+If $\|I - V\|,\, \|I - W\|\le \delta$,
+$\|V-\widetilde{V}\|,\,\|W-\widetilde{W}\| \le \Delta$
+\begin{equation*}
+\|VWV^\dagger W^\dagger - \widetilde{V}\widetilde{W}\widetilde{V}^\dagger\widetilde{W}^\dagger\| \le \emm{8\Delta^2 + 8\Delta\delta} + 4\Delta\delta^2 + 4\Delta^3 + \Delta^4.
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Let $\Delta_V := \widetilde{V} - V$ and $\Delta_W := \widetilde{W} - W$.
+\begin{align*}
+ \widetilde{V}\widetilde{W}\widetilde{V}^\dagger\widetilde{W}^\dagger
+&= VWV^\dagger W^\dagger +
+\Delta_VWV^\dagger W^\dagger +
+V\Delta_WV^\dagger W^\dagger\\
+&\quad + VW\Delta_V^\dagger W^\dagger + VWV^\dagger\Delta_W^\dagger + O(\Delta^2).
+\end{align*}
+\begin{align*}
+&\|VWV^\dagger W^\dagger - \widetilde{V}\widetilde{W}\widetilde{V}^\dagger\widetilde{W}^\dagger\|
+\le
+\|\Delta_VWV^\dagger W^\dagger + VW\Delta_V^\dagger W^\dagger\|\\
+&\quad+\|V\Delta_WV^\dagger W^\dagger + VWV^\dagger\Delta_W^\dagger\| +
+\binom{4}{2}\Delta^2 + \binom{4}{3}\Delta^3 + \Delta^4.
+\end{align*}
+\end{proof}
+\end{frame}
+
+\begin{frame}{Proof 2/2}
+\small
+\begin{proof}
+%Let $\delta_V := V - I$ and $\delta_W := W - I$.
+Let $\delta_W := W - I$.
+\begin{align*}
+\|\Delta_VWV^\dagger W^\dagger + VW\Delta_V^\dagger W^\dagger\|
+&= \|\Delta_VV^\dagger + V\Delta_V^\dagger + \Delta_V\delta_W V^\dagger + V\Delta_V^\dagger \delta_W^\dagger + \dotsb\|\\
+&\le \|\emm{\Delta_VV^\dagger + V\Delta_V^\dagger}\| + 4 \Delta \delta + 2\Delta\delta^2\\
+\end{align*}
+Since $V$ and $V+\Delta_V$ are unitary,
+\begin{align*}
+&(V+\Delta_V)(V+\Delta_V)^\dagger = I\\
+\iff& V V^\dagger + V \Delta_V^\dagger + \Delta_V V^\dagger + \Delta_V \Delta_V^\dagger = I\\
+\iff& V \Delta_V^\dagger + \Delta_V V^\dagger + \Delta_V \Delta_V^\dagger = 0
+\end{align*}
+\begin{align*}
+\|\Delta_VWV^\dagger W^\dagger + VW\Delta_V^\dagger W^\dagger\|\le \Delta^2 + 4 \Delta\delta + 2\Delta\delta^2.
+\end{align*}
+\end{proof}
+%$c_{\mathsf{approx}}\approx 8c_{\mathsf{GC}}$.
+$c_{\mathsf{B}}\approx 8$.
 \end{frame}
 
 \begin{frame}{Assignments}
