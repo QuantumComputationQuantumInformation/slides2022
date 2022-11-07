@@ -74,7 +74,7 @@
 \begin{frame}{Universality of a quantum circuit}
 \begin{theorem}[Universality of finite gate set]
 For any unitary matrix $U\in L(\mathbb{C}^{2^n})$ and $\emm{\epsilon} >0$,
-there is a quantum circuit with \emm{$X,\,Y,\,Z,\,H,\,S,\,T,\,\mathsf{CNOT}$} gates computing $\widetilde{U}$
+there is a quantum circuit with \emm{$H,\,T,\,\mathsf{CNOT}$} gates computing $\widetilde{U}$
 satisfying $D(U,\widetilde{U})<\emm{\epsilon}$.
 \end{theorem}
 \begin{proof}
@@ -83,7 +83,8 @@ satisfying $D(U,\widetilde{U})<\emm{\epsilon}$.
 \item Any unitary matrix can be decomposed to a product of \emm{two-level unitary matrices}. {\color{green}{Done}}
 \item Any two-level unitary matrix can be decomposed to a product of \emm{controlled-unitary gates}. {\color{green}{Done}}
 \item Any controlled-untary gate can be decomposed to a product of \emm{CNOT and arbitrary single-qubit gates}.
-\item Any single-qubit gate can be approximated by $X,\,Y,\,Z,\,H,\,S$ and $T$.
+%\item Any single-qubit gate can be approximated by $X,\,Y,\,Z,\,H,\,S$ and $T$.
+\item Any single-qubit gate can be approximated by \emm{$H$ and $T$}.
 \end{enumerate}
 \end{proof}
 \end{frame}
@@ -94,9 +95,10 @@ satisfying $D(U,\widetilde{U})<\emm{\epsilon}$.
 \item $\mathsf{U}(n) := \text{the set of $n\times n$ unitary matrices}.$
 \item $\mathsf{SU}(n) := \text{the set of $n\times n$ unitary matrices $U$ with $\emm{\det(U)=1}$}.$
 \item $\mathsf{U}(n)$ and $\mathsf{SU}(n)$ are groups.
-\item For $U\in\mathsf{SU}(n)$ and $V\in\mathsf{U}(n)$, $VUV^\dagger\in\mathsf{SU}(n)$.
-\item For $V\in\mathsf{U}(n)$ and $W\in\mathsf{U}(n)$, $VWV^\dagger W^\dagger\in\mathsf{SU}(n)$.
 \item For $U\in\mathsf{U}(n)$, there exists $V\in\mathsf{SU}(n)$ and $\theta\in\mathbb{R}$ such that $U = \mathsf{e}^{i\theta}V$.
+\item For $U\in\mathsf{SU}(n)$ and $V\in\mathsf{U}(n)$, $VUV^\dagger\in\mathsf{SU}(n)$.
+\item For $V\in\mathsf{U}(n)$ and $W\in\mathsf{U}(n)$, $VWV^\dagger W^\dagger\in\mathsf{SU}(n)$\\
+\emm{(group commutator)}.
 \end{itemize}
 \end{frame}
 
@@ -336,7 +338,7 @@ Any controlled-unitary gate can be decomposed to a product of \emm{CNOT and arbi
 \begin{frame}{Universality of a quantum circuit}
 \begin{theorem}[Universality of finite gate set]
 For any unitary matrix $U\in L(\mathbb{C}^{2^n})$ and $\emm{\epsilon} >0$,
-there is a quantum circuit with \emm{$X,\,Y,\,Z,\,H,\,S,\,T,\,\mathsf{CNOT}$} gates computing $\widetilde{U}$
+there is a quantum circuit with \emm{$H,\,T,\,\mathsf{CNOT}$} gates computing $\widetilde{U}$
 satisfying $D(U,\widetilde{U})<\emm{\epsilon}$.
 \end{theorem}
 \begin{proof}
@@ -345,14 +347,14 @@ satisfying $D(U,\widetilde{U})<\emm{\epsilon}$.
 \item Any unitary matrix can be decomposed to a product of \emm{two-level unitary matrices}. {\color{green}{Done}}
 \item Any two-level unitary matrix can be decomposed to a product of \emm{controlled-unitary gates}. {\color{green}{Done}}
 \item Any controlled-untary gate can be decomposed to a product of \emm{CNOT and arbitrary single-qubit gates}. {\color{green}{Done}}
-\item Any single-qubit gate can be approximated by $X,\,Y,\,Z,\,H,\,S$ and $T$.
+\item Any single-qubit gate can be approximated by \emm{$H$ and $T$}.
 \end{enumerate}
 \end{proof}
 \end{frame}
 
 \begin{frame}{Approximation of a single-qubit gate is sufficient}
 \begin{theorem}
-For any $U\in U(2)$ and $\epsilon>0$, there exists a single-qubit quantum circuit $V$ consisting of \emm{$X,\,Y,\,Z,\,H,\,S$ and $T$} gates such that $D(U, V)\le \epsilon$.
+For any $U\in U(2)$ and $\epsilon>0$, there exists a single-qubit quantum circuit $V$ consisting of \emm{$H$ and $T$} gates such that $D(U, V)\le \epsilon$.
 \end{theorem}
 \small
 %For $A\in L(\mathbb{C}^n, \mathbb{C}^m)$,
@@ -375,7 +377,7 @@ Assume $D(U_i,V_i)\le\epsilon$ for $i=1,\dotsc,m$.
 \end{align*}
 \end{frame}
 
-\begin{frame}{Universality of $X,Y,Z,H,S,\emm{T}$}
+\begin{frame}{Non-universality of $X,Y,Z,H,S$}
 \centering
 
 \tdplotsetmaincoords{70}{120}
@@ -424,7 +426,7 @@ $U=\emm{R_{\hat{n}}(\theta)}$.
 \end{frame}
 \fi
 
-\begin{frame}{Universality of $X,Y,Z,H,S,\emm{T}$}
+\begin{frame}{Universality of $H,\emm{T}$}
 $T\cong R_Z(\pi/4)$.
 $HTH\cong R_X(\pi/4)$.
 \begin{align*}
@@ -485,6 +487,24 @@ Since $U\in\mathsf{SU}(2)$, $\theta$ must be 0 or $\pi$.
 \end{proof}
 \end{frame}
 
+
+\begin{frame}{Universality of a quantum circuit}
+\begin{theorem}[Universality of finite gate set]
+For any unitary matrix $U\in L(\mathbb{C}^{2^n})$ and $\emm{\epsilon} >0$,
+there is a quantum circuit with \emm{$H,\,T,\,\mathsf{CNOT}$} gates computing $\widetilde{U}$
+satisfying $D(U,\widetilde{U})<\emm{\epsilon}$.
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\setlength{\itemsep}{1em}
+\item Any unitary matrix can be decomposed to a product of \emm{two-level unitary matrices}. {\color{green}{Done}}
+\item Any two-level unitary matrix can be decomposed to a product of \emm{controlled-unitary gates}. {\color{green}{Done}}
+\item Any controlled-untary gate can be decomposed to a product of \emm{CNOT and arbitrary single-qubit gates}. {\color{green}{Done}}
+\item Any single-qubit gate can be approximated by \emm{$H$ and $T$}. {\color{green}{Done}}
+\end{enumerate}
+\end{proof}
+\end{frame}
+
 \begin{frame}{Matrix decomposition}
 \small
 \begin{corollary}
@@ -504,23 +524,6 @@ $U=e^{i\alpha}R_Z(\beta)R_Y(\gamma)R_Z(\delta)$.
 }
 \end{blochsphere}
 \end{center}
-\end{proof}
-\end{frame}
-
-\begin{frame}{Universality of a quantum circuit}
-\begin{theorem}[Universality of finite gate set]
-For any unitary matrix $U\in L(\mathbb{C}^{2^n})$ and $\emm{\epsilon} >0$,
-there is a quantum circuit with \emm{$X,\,Y,\,Z,\,H,\,S,\,T,\,\mathsf{CNOT}$} gates computing $\widetilde{U}$
-satisfying $D(U,\widetilde{U})<\emm{\epsilon}$.
-\end{theorem}
-\begin{proof}
-\begin{enumerate}
-\setlength{\itemsep}{1em}
-\item Any unitary matrix can be decomposed to a product of \emm{two-level unitary matrices}. {\color{green}{Done}}
-\item Any two-level unitary matrix can be decomposed to a product of \emm{controlled-unitary gates}. {\color{green}{Done}}
-\item Any controlled-untary gate can be decomposed to a product of \emm{CNOT and arbitrary single-qubit gates}. {\color{green}{Done}}
-\item Any single-qubit gate can be approximated by $X,\,Y,\,Z,\,H,\,S$ and $T$. {\color{green}{Done}}
-\end{enumerate}
 \end{proof}
 \end{frame}
 
