@@ -59,7 +59,7 @@
 \author{Ryuhei Mori}
 %\institute{$\vcenter{\hbox{\includegraphics[width=30pt]{ELC_logo}}}$ Postdoctoral Fellow of ELC\\ $\vcenter{\hbox{\includegraphics[width=20pt]{titech_logo}}}$ Tokyo Institute of Technology}
 \institute{Tokyo Institute of Technology}
-\date{9, Nov., 2021}
+\date{}
 
 
 
@@ -248,6 +248,18 @@ Hadamard operator is the quantum Fourier transform for $N=2$.
 \end{align*}
 \end{frame}
 
+\begin{frame}{Quantum phase estimation for superposition of eigenvectors}
+\begin{align*}
+\ket{\psi} := \sum_{i=1}^N \alpha_i \ket{\psi_{\theta_i}}
+\end{align*}
+\begin{align*}
+\ket{0}\left(\sum_{i=1}^N \alpha_i \ket{\psi_{\theta_i}}\right)
+&\longmapsto \sum_{i=1}^N \alpha_i \ket{\widehat{\varphi}_i}\ket{\psi_{\theta_i}}\\
+&\longmapsto \sum_{i=1}^N \alpha_i \ket{\varphi_i}\ket{\psi_{\theta_i}}
+\end{align*}
+Then, \emm{$\varphi_i$} is measured with probability $|\alpha_i|^2$.
+\end{frame}
+
 \begin{frame}{Probability of the best approximation}
 \small
 Assume that the eigenvalue is $\mathsf{e}^{2\pi i\phi}$.
@@ -273,17 +285,6 @@ Let $\varphi\in\{0,1,\dotsc,2^n-1\}$ be the best $n$-bit approximation of $\phi$
 \end{frame}
 \fi
 
-\begin{frame}{Quantum phase estimation for superposition of eigenvectors}
-\begin{align*}
-\ket{\psi} := \sum_{i=1}^N \alpha_i \ket{\psi_{\theta_i}}
-\end{align*}
-\begin{align*}
-\ket{0}\left(\sum_{i=1}^N \alpha_i \ket{\psi_{\theta_i}}\right)
-&\longmapsto \sum_{i=1}^N \alpha_i \ket{\widehat{\varphi}_i}\ket{\psi_{\theta_i}}\\
-&\longmapsto \sum_{i=1}^N \alpha_i \ket{\varphi_i}\ket{\psi_{\theta_i}}
-\end{align*}
-Then, \emm{$\varphi_i$} is measured with probability $|\alpha_i|^2$.
-\end{frame}
 
 \if0
 \begin{frame}{Quantum Fourier transform}
@@ -422,6 +423,8 @@ Let $R_k:=\begin{bmatrix}1&0\\0&\omega_{2^k}\end{bmatrix}$.
 \lstick{\ket{x_4}} & \gate{H} & \gate{R_2} & \gate{R_3} & \gate{R_4} & \qw      & \qw        & \qw        & \qw      & \qw        & \qw      & \qswap\qwx & \qw    & \qw
 }
 \]
+
+\emm{$O(n^2)$} Hadamard and Controlled phase shift gates.
 \end{frame}
 
 \if0
@@ -578,6 +581,10 @@ $S_n = 4 S_{n/2} = 4^{\log n}S_1 = O(\emm{n^2})$.
 \begin{enumerate}
 \setlength{\itemsep}{2em}
 \item Show that the Fourier basis $\{\ket{\widehat{x}}\}_{x\in\{0,1,\dotsc,N-1\}}$ is orthonormal.
+\item Show all eigenvectors and corresponding eigenvalues of
+\begin{equation*}
+X_N := \sum_{j=0}^{N-1}\ket{j+1\bmod N}\bra{j}.
+\end{equation*}
 \end{enumerate}
 \end{frame}
 
