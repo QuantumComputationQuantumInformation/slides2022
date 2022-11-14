@@ -59,7 +59,7 @@
 \author{Ryuhei Mori}
 %\institute{$\vcenter{\hbox{\includegraphics[width=30pt]{ELC_logo}}}$ Postdoctoral Fellow of ELC\\ $\vcenter{\hbox{\includegraphics[width=20pt]{titech_logo}}}$ Tokyo Institute of Technology}
 \institute{Tokyo Institute of Technology}
-\date{12, Nov., 2021}
+\date{}
 
 
 
@@ -87,11 +87,13 @@ Does there exist an algorithm with time complexity $O((\log N)^c)$ ?
 \end{center}
 
 \vspace{1em}
-It is known that $\textsc{PrimalityTest}\in\mathsf{P}$ {\scriptsize [Agrawal, Kayal, Saxena, 2004]}.
+$\textsc{PrimalityTest}\in\mathsf{coRP}$ {\scriptsize [Solovay, Strassen, 1977], \emm{[Miller, Rabin 1980]}}.
+
+$\textsc{PrimalityTest}\in\mathsf{P}$ {\scriptsize [Agrawal, Kayal, Saxena, 2004]}.
 
 It is \emm{believed} that $\textsc{IntegerFactoring}\notin\mathsf{BPP}$.
 
-It is known that $\textsc{IntegerFactoring}\in\emm{\mathsf{BQP}}$. { [Shor 1994]}
+$\textsc{IntegerFactoring}\in\emm{\mathsf{BQP}}$. { \emm{[Shor 1994]}}
 \end{frame}
 
 \begin{frame}{Nontrivial square root of $1$}
@@ -102,7 +104,7 @@ x^2 = 1 \mod N
 &x^2 = 1 \mod N\\
 \iff& (x-1)(x+1) = 0 \mod N
 \end{align*}
-If $N$ is a prime number, $x=\pm 1$ are only solution.
+If $N$ is a prime number, $x=\pm 1$ are only solutions.
 
 \vspace{2em}
 If there exists a \emm{nontrivial square root of 1}, then $N$ must be composite number.
@@ -234,7 +236,7 @@ $a^d$ & $a^{2d}$ & $a^{2^2d}$ & $\dotsm$ & $a^{2^u d}$\\
 \If{$r$ is odd}
 \textbf{continue}
 \EndIf
-\If{$a^{r/2}\ne N-1$}
+\If{$a^{r/2}\ne N-1\bmod N$}
 \State \Return $\mathsf{gcd}(a^{r/2}+1, N)$
 \EndIf
 \EndLoop
