@@ -59,7 +59,7 @@
 \author{Ryuhei Mori}
 %\institute{$\vcenter{\hbox{\includegraphics[width=30pt]{ELC_logo}}}$ Postdoctoral Fellow of ELC\\ $\vcenter{\hbox{\includegraphics[width=20pt]{titech_logo}}}$ Tokyo Institute of Technology}
 \institute{Tokyo Institute of Technology}
-\date{16, Nov., 2021}
+\date{}
 
 
 
@@ -165,7 +165,7 @@ Then,
 &= \sqrt{\frac{M}{N}} \ket{s} + \sqrt{\frac{N-M}{N}} \ket{f}\\
 &= \sin\theta\ket{s} + \cos\theta\ket{f}
 \end{align*}
-where $\theta=\arcsin\sqrt{\frac{M}{N}}$.
+where $\theta:=\arcsin\sqrt{\frac{M}{N}}$.
 \end{frame}
 
 \begin{frame}{Analysis of Grover's algorithm}
@@ -236,8 +236,11 @@ Choose $k$ satisfying
 Here, $\sin\theta = \sqrt{\frac{M}{N}} \iff \theta\approx\sqrt{\frac{M}{N}}$.
 Hence, $k\approx \frac{\pi}4\sqrt{\frac{N}{M}}$.
 
-\vspace{2em}
+\vspace{1em}
 [Grover 1996]
+
+\vspace{2em}
+Grover's search is exactly \emm{optimal} for $M=1$ [Zalka 1999], and general $M$ [Ito and Mori 2021].
 \end{frame}
 
 \begin{frame}{Grover's algorithm}
@@ -356,6 +359,7 @@ then there exists degree-$2t$ real univariate polynomial $q(k)$ such that $|q(k)
 \end{frame}
 \fi
 
+\if0
 \begin{frame}{Optimality of Grover's search}
 Let $V_x := I-2\ket{x}\bra{x}$.
 \begin{align*}
@@ -493,6 +497,7 @@ Since \emm{$\theta = \arccos\left(\sqrt{\frac{N-1}{N}}\right)$},
 \end{align*}
 [Zalka 1999]
 \end{frame}
+\fi
 
 \begin{frame}{Summary}
 \begin{itemize}

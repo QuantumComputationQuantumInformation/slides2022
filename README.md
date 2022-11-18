@@ -24,8 +24,8 @@ https://www.youtube.com/playlist?list=PLmCVdZFx-DuebJ2Up_0tW5cAgJmsjECcY
 * 11/8 Universality of quantum circuit [slide](/tex/10_Universality2.pdf)
 * 11/11 Quantum phase estimation [slide](/tex/11_QuantumPhaseEstimation.pdf)
 * 11/15 Shor's algorithm [slide](/tex/12_Shor.pdf)
+* 11/18 Grover's algorithm [slide](/tex/13_Grover.pdf)
 
 <!--
-* 11/16 Grover's algorithm [slide](/tex/13_Grover.pdf)
 * 11/19 Operational characterization of quantum nonlocality [slide](/tex/14_QuantumCorrelation.pdf)
 -->
